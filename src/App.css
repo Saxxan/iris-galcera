@@ -1,0 +1,9 @@
+:root {
+    /* Constantes de la web (Colores, tipografía, espaciado) */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
