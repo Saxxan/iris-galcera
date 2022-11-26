@@ -1,5 +1,14 @@
 :root {
-    /* Constantes de la web (Colores, tipografía, espaciado) */
+    /* Fonts */
+    --font-body: 'Times New Roman', serif;
+
+    /* Colors */
+    --primary: rgb(79, 123, 90);
+    --secondary: rgb(233, 172, 66);
+    --tertiary-light: rgb(237, 230, 196);
+    --tertiary-dark: rgb(211, 185, 148);
+    --black: rgb(0, 0, 0);
+    --white: rgb(255, 255, 255);
 }
 
 * {
