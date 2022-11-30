@@ -1,19 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import Navigation from "../../commons/Navigation/Navigation";
-
-
-const PageProject = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--secondary);
-`;
+import { ProjectsPageDeskopt, ProjectsPanel } from "../../commons/theme/Theme";
 
 export default function Film() {
   return (
-    <PageProject>
+    <ProjectsPageDeskopt>
       <Navigation />
-      <h1>COMMERCIALS</h1>
-    </PageProject>
+      <ProjectsPanel>
+        <h1>FILM</h1>
+      </ProjectsPanel>
+    </ProjectsPageDeskopt>
   );
 }

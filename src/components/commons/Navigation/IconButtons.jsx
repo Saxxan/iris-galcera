@@ -5,7 +5,7 @@ export function BurguerIconButton(props) {
   const IconButton = styled.svg`
     width: 30px;
     height: 30px;
-    fill: ${(props) => (props.theme === "green" ? "#FFF" : "#000")};
+    fill: var(--primary);
     display: flex;
     align-self: flex-end;
     @media (min-width: 800px) {
@@ -30,6 +30,7 @@ export function CloseIconButton(props) {
   const IconButton = styled.svg`
     width: 30px;
     height: 30px;
+    fill: var(--primary);
     display: flex;
     align-self: flex-end;
     @media (min-width: 800px) {
@@ -42,7 +43,6 @@ export function CloseIconButton(props) {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="#fff"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M13.46 12L19 17.54V19H17.54L12 13.46L6.46 19H5V17.54L10.54 12L5 6.46V5H6.46L12 10.54L17.54 5H19V6.46L13.46 12Z" />

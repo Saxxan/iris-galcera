@@ -1,27 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import Navigation from "../../commons/Navigation/Navigation";
 
-const PageHome = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--primary);
+// Components
+import { HomePage } from "../../commons/theme/Theme";
+import Navigation from "../../commons/Navigation/Navigation";
+import {
+  SubTitleH3,
+  TitleH1,
+  TitleH2,
+} from "../../commons/Typography/Typography";
+
+// Page styled components
+const TitleLayout = styled.main`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-`;
+  flex-grow: 1;
+  margin-top: -80px;
 
-const HomeTitle = styled.h1`
-  color: var(--tertiary-light);
-  font-size: clamp(96px, 15vw, 387px);
-  margin-top: 20vh;
+  @media (min-width: 800px) {
+    margin-top: -100px;
+  }
 `;
 
 export default function Home() {
   return (
-    <PageHome>
+    <HomePage>
       <Navigation theme="green" />
-      <HomeTitle>IRIS</HomeTitle>
-    </PageHome>
+      <TitleLayout>
+        <TitleH1>IRIS</TitleH1>
+        <SubTitleH3>art department</SubTitleH3>
+        <TitleH2>GALCERÀ</TitleH2>
+      </TitleLayout>
+    </HomePage>
   );
 }

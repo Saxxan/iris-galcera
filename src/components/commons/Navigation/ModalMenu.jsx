@@ -13,7 +13,7 @@ export default function ModalMenu(props) {
     height: 100vh;
     padding: 12px 5vw;
     flex-direction: column;
-    background-color: var(--primary);
+    background-color: var(--secondary);
   `;
   return (
     <Modal display={props.display}>

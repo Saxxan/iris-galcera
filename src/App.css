@@ -1,18 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500;700&display=swap');
+
 :root {
     /* Fonts */
-    --font-body: 'Times New Roman', serif;
+    --font-body: 'Roboto', sans-serif;
+    --font-italic: 'Dancing script', cursive;
 
     /* Colors */
-    --primary: rgb(79, 123, 90);
-    --secondary: rgb(233, 172, 66);
-    --tertiary-light: rgb(237, 230, 196);
-    --tertiary-dark: rgb(211, 185, 148);
-    --black: rgb(0, 0, 0);
-    --white: rgb(255, 255, 255);
+    --primary: #EB665D;
+    --secondary: #ECBDAD;
+    --tertiary: #70A19B;
+    --grey: #262626;
+    --ice: #E8E7E2;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--ice);
 }

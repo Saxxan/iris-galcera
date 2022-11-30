@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const NavigationMenu = styled.ul`
   display: flex;
-  gap: 12px;
+  gap: 36px;
 `;
 
 const NavigationMenuDeskopt = styled(NavigationMenu)`
@@ -28,27 +28,22 @@ const OptionLink = styled(Link)`
   text-decoration: none;
   display: flex;
   font-size: 35px;
-  font-weight: 600px;
-  color: var(--tertiary-light);
+  font-weight: 00px;
+  color: var(--ice);
 
   &.active {
-    color: var(--secondary);
-    & span {
-      width: 90vw;
-      height: 4px;
-      background-color: var(--primary);
-      position: absolute;
-      transform: translate(-10%, 19px);
-    }
+    color: var(--primary);
   }
 
   @media (min-width: 800px) {
     font-size: clamp(15px, 1vw, 20px);
+    font-weight: 500;
+  }
+`;
 
-    &.active span {
-      width: 20vw;
-      max-width: 200px;
-    }
+const OptionLinkSec = styled(OptionLink)`
+  @media (min-width: 800px) {
+    color: var(--tertiary);
   }
 `;
 
@@ -62,22 +57,35 @@ export function Menu() {
   ];
 
   function handleOptionSelected(optionPath) {
-    let response = optionPath === location.pathname ? "active" : "";
-    return response;
+    return optionPath === location.pathname ? "active" : "";
+  }
+
+  function getTheme() {
+    const theme = location.pathname !== "/" ? "secondary" : "primary";
+    return theme;
   }
 
   return (
     <>
       {options.map((option) => {
-        return (
-          <OptionLink
-            className={handleOptionSelected(option.path)}
-            to={option.path}
-          >
-            {option.name}
-            <span> </span>
-          </OptionLink>
-        );
+        const theme = getTheme();
+        const response =
+          theme === "primary" ? (
+            <OptionLink
+              className={handleOptionSelected(option.path)}
+              to={option.path}
+            >
+              {option.name}
+            </OptionLink>
+          ) : (
+            <OptionLinkSec
+              className={handleOptionSelected(option.path)}
+              to={option.path}
+            >
+              {option.name}
+            </OptionLinkSec>
+          );
+        return response;
       })}
     </>
   );

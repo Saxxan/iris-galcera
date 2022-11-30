@@ -6,11 +6,13 @@ import { BurguerIconButton } from "./IconButtons";
 
 const Nav = styled.nav`
   width: 90vw;
+  height: 10vh;
   margin: 0 auto;
   padding: 12px 6px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 export default function Navigation(props) {
