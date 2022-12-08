@@ -17,4 +17,9 @@ export const SubTitleH3 = styled.h3`
   margin-bottom: -10px;
   color: var(--primary);
   font-family: var(--font-italic);
+
+  @media (min-width: 800px) {
+    margin-top: -80px;
+    margin-bottom: -60px;
+  }
 `;

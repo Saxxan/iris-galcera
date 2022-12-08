@@ -51,9 +51,9 @@ export function Menu() {
   const location = useLocation();
 
   const options = [
-    { name: "HOME", path: "/" },
-    { name: "COMMERCIALS", path: "/commercials" },
-    { name: "FILM", path: "/film" },
+    { name: "HOME", path: "/", key: "1" },
+    { name: "COMMERCIALS", path: "/commercials", key: "2" },
+    { name: "FILM", path: "/film", key: "3" },
   ];
 
   function handleOptionSelected(optionPath) {
@@ -72,6 +72,7 @@ export function Menu() {
         const response =
           theme === "primary" ? (
             <OptionLink
+              key={option.key}
               className={handleOptionSelected(option.path)}
               to={option.path}
             >
@@ -79,6 +80,7 @@ export function Menu() {
             </OptionLink>
           ) : (
             <OptionLinkSec
+              key={option.key}
               className={handleOptionSelected(option.path)}
               to={option.path}
             >
