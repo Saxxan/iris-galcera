@@ -41,12 +41,6 @@ const OptionLink = styled(Link)`
   }
 `;
 
-const OptionLinkSec = styled(OptionLink)`
-  @media (min-width: 800px) {
-    color: var(--tertiary);
-  }
-`;
-
 export function Menu() {
   const location = useLocation();
 
@@ -60,34 +54,24 @@ export function Menu() {
     return optionPath === location.pathname ? "active" : "";
   }
 
-  function getTheme() {
-    const theme = location.pathname !== "/" ? "secondary" : "primary";
-    return theme;
-  }
+  // NOT USED, TO BE REMOVE
+  // function getTheme() {
+  //   const theme = location.pathname !== "/" ? "secondary" : "primary";
+  //   return theme;
+  // }
 
   return (
     <>
       {options.map((option) => {
-        const theme = getTheme();
-        const response =
-          theme === "primary" ? (
-            <OptionLink
-              key={option.key}
-              className={handleOptionSelected(option.path)}
-              to={option.path}
-            >
-              {option.name}
-            </OptionLink>
-          ) : (
-            <OptionLinkSec
-              key={option.key}
-              className={handleOptionSelected(option.path)}
-              to={option.path}
-            >
-              {option.name}
-            </OptionLinkSec>
-          );
-        return response;
+        return (
+          <OptionLink
+            key={option.key}
+            className={handleOptionSelected(option.path)}
+            to={option.path}
+          >
+            {option.name}
+          </OptionLink>
+        );
       })}
     </>
   );

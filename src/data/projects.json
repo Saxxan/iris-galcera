@@ -1,0 +1,24 @@
+[
+  {
+    "type": "film",
+    "projects": [
+      {
+        "projectName": "L'Alqueria Blanca"
+      },
+      {
+        "projectName": "Otra serie"
+      }
+    ]
+  },
+  {
+    "type": "commercials",
+    "projects": [
+      {
+        "projectName": "Comercial 1"
+      },
+      {
+        "projectName": "Comercial 2"
+      }
+    ]
+  }
+]

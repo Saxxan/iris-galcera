@@ -23,3 +23,11 @@ export const SubTitleH3 = styled.h3`
     margin-bottom: -60px;
   }
 `;
+
+export const ProjectTitleH1 = styled.h1`
+  font-size: clamp(20px, 2vw, 50px);
+  color: var(--ice);
+  font-weight: 500;
+  letter-spacing: .5px;
+  height: fit-content;
+`

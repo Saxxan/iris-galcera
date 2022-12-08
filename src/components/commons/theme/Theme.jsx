@@ -7,11 +7,11 @@ export const ProjectPage = styled.div`
   color: var(--ice);
 `;
 
-export const ProjectsPageDeskopt = styled(ProjectPage)`
-  @media (min-width: 800px) {
-    background-color: var(--ice);
-  }
-`;
+// export const ProjectsPageDeskopt = styled(ProjectPage)`
+//   @media (min-width: 800px) {
+//     background-color: var(--secondary);
+//   }
+// `;
 
 export const HomePage = styled.div`
   width: 100vw;
@@ -20,15 +20,4 @@ export const HomePage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const ProjectsPanel = styled.div`
-  background-color: var(--grey);
-  display: flex;
-  padding: 12px 24px;
-  height: 90vh;
-
-  @media (min-width: 800px) {
-    margin: 0 5vw;
-  }
 `;

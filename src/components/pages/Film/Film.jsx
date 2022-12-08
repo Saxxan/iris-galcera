@@ -1,14 +1,13 @@
 import React from "react";
 import Navigation from "../../commons/Navigation/Navigation";
-import { ProjectsPageDeskopt, ProjectsPanel } from "../../commons/theme/Theme";
+import ProjectsPanel from "../../commons/ProjectsPanel/ProjectsPanel";
+import { ProjectPage } from "../../commons/theme/Theme";
 
 export default function Film() {
   return (
-    <ProjectsPageDeskopt>
+    <ProjectPage>
       <Navigation />
-      <ProjectsPanel>
-        <h1>FILM</h1>
-      </ProjectsPanel>
-    </ProjectsPageDeskopt>
+      <ProjectsPanel type="film" />
+    </ProjectPage>
   );
 }
