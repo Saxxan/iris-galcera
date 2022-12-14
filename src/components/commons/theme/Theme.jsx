@@ -1,5 +1,7 @@
+// Dependencies
 import styled from "styled-components";
 
+// Styled components
 export const ProjectPage = styled.div`
   width: 100vw;
   height: 100vh;

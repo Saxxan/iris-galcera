@@ -1,9 +1,13 @@
+// Dependencies
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
+// Components
 import { CloseIconButton } from "./IconButtons";
 import NavMenu from "./NavMenu";
 
-export default function ModalMenu(props) {
+function ModalMenu(props) {
   const Modal = styled.div`
     display: ${(props) => props.display};
     position: absolute;
@@ -24,3 +28,10 @@ export default function ModalMenu(props) {
     </Modal>
   );
 }
+
+ModalMenu.propTypes = {
+  display: PropTypes.string,
+  handleVisibility: PropTypes.func,
+};
+
+export default ModalMenu;

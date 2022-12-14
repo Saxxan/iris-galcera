@@ -1,3 +1,4 @@
+// Dependencies
 import React from "react";
 import styled from "styled-components";
 
@@ -24,7 +25,7 @@ const TitleLayout = styled.main`
   }
 `;
 
-export default function Home() {
+function Home() {
   return (
     <HomePage>
       <Navigation />
@@ -36,3 +37,5 @@ export default function Home() {
     </HomePage>
   );
 }
+
+export default Home;

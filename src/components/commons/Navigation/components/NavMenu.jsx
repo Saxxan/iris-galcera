@@ -1,7 +1,10 @@
+// Dependencies
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
+// Styled components
 const NavigationMenu = styled.ul`
   display: flex;
   gap: 36px;
@@ -41,7 +44,7 @@ const OptionLink = styled(Link)`
   }
 `;
 
-export function Menu() {
+function Menu() {
   const location = useLocation();
 
   const options = [
@@ -76,7 +79,8 @@ export function Menu() {
     </>
   );
 }
-export default function NavMenu(props) {
+
+function NavMenu(props) {
   return props.isDeskoptMenu ? (
     <NavigationMenuDeskopt>
       <Menu />
@@ -87,3 +91,9 @@ export default function NavMenu(props) {
     </NavigationMenuMobile>
   );
 }
+
+NavMenu.propTypes = {
+  isDeskoptMenu: PropTypes.bool,
+};
+
+export default NavMenu;
