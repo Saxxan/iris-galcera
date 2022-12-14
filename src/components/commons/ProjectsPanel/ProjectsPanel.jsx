@@ -1,11 +1,15 @@
+// Dependencies
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+// Components
 import { ProjectTitleH1 } from "../Typography/Typography";
 
 // Data
 import Projects from "../../../data/projects.json";
 
+// Styled component
 export const Panel = styled.div`
   background-color: var(--grey);
   display: flex;

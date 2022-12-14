@@ -1,9 +1,12 @@
+// Dependencies
 import React from "react";
+
+// Components
 import Navigation from "../../commons/Navigation/Navigation";
 import ProjectsPanel from "../../commons/ProjectsPanel/ProjectsPanel";
 import { ProjectPage } from "../../commons/theme/Theme";
 
-export default function Film() {
+function Film() {
   return (
     <ProjectPage>
       <Navigation />
@@ -11,3 +14,5 @@ export default function Film() {
     </ProjectPage>
   );
 }
+
+export default Film;

@@ -1,9 +1,14 @@
+// Dependencies
 import React, { useState } from "react";
 import styled from "styled-components";
-import NavMenu from "./NavMenu";
-import ModalMenu from "./ModalMenu";
-import { BurguerIconButton } from "./IconButtons";
+import PropTypes from "prop-types";
 
+// Components
+import NavMenu from "./components/NavMenu";
+import ModalMenu from "./components/ModalMenu";
+import { BurguerIconButton } from "./components/IconButtons";
+
+// Styled component
 const Nav = styled.nav`
   width: 90vw;
   height: 10vh;
@@ -15,7 +20,7 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-export default function Navigation(props) {
+function Navigation(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function toggleModalVisibility() {
@@ -25,11 +30,15 @@ export default function Navigation(props) {
   return (
     <>
       <Nav>
-        {/* Icono de hamburguesa */}
-        <BurguerIconButton handleClick={toggleModalVisibility} theme={props.theme}/>
-        {/* Menu en deskopt */}
+        {/* Burger icon */}
+        <BurguerIconButton
+          handleClick={toggleModalVisibility}
+          theme={props.theme}
+        />
+        {/* Deskopt menu */}
         <NavMenu isDeskoptMenu={true} />
       </Nav>
+      {/* Modal menu */}
       <ModalMenu
         display={isModalOpen ? "flex" : "none"}
         handleVisibility={toggleModalVisibility}
@@ -37,3 +46,9 @@ export default function Navigation(props) {
     </>
   );
 }
+
+Navigation.propTypes = {
+  theme: PropTypes.string,
+};
+
+export default Navigation;

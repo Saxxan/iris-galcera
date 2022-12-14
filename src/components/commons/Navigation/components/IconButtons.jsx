@@ -1,7 +1,9 @@
+// Dependencies
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-export function BurguerIconButton(props) {
+function BurguerIconButton(props) {
   const IconButton = styled.svg`
     width: 30px;
     height: 30px;
@@ -26,7 +28,11 @@ export function BurguerIconButton(props) {
   );
 }
 
-export function CloseIconButton(props) {
+BurguerIconButton.propTypes = {
+  handleClick: PropTypes.func,
+};
+
+function CloseIconButton(props) {
   const IconButton = styled.svg`
     width: 30px;
     height: 30px;
@@ -49,3 +55,9 @@ export function CloseIconButton(props) {
     </IconButton>
   );
 }
+
+CloseIconButton.propTypes = {
+  handleClick: PropTypes.func,
+};
+
+export { BurguerIconButton, CloseIconButton };
