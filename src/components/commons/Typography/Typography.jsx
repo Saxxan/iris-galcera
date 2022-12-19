@@ -33,3 +33,11 @@ export const ProjectTitleH1 = styled.h1`
   letter-spacing: 0.5px;
   height: fit-content;
 `;
+
+export const ProjectCardHeader = styled.h2`
+  font-size: clamp(16px, 2vw, 30px);
+  color: var(--ice);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+`;

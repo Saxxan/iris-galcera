@@ -3,10 +3,14 @@
     "type": "film",
     "projects": [
       {
-        "projectName": "L'Alqueria Blanca"
+        "projectName": "L'Alqueria Blanca",
+        "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
+        "image1": "./images/example1.webp"
       },
       {
-        "projectName": "Otra serie"
+        "projectName": "Otra serie",
+        "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
+        "image1": "./images/example2.webp"
       }
     ]
   },
@@ -14,10 +18,14 @@
     "type": "commercials",
     "projects": [
       {
-        "projectName": "Comercial 1"
+        "projectName": "Comercial 1",
+        "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
+        "image1": "./images/example1.webp"
       },
       {
-        "projectName": "Comercial 2"
+        "projectName": "Comercial 2",
+        "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
+        "image1": "./images/example2.webp"
       }
     ]
   }
