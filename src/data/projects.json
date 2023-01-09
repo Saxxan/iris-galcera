@@ -3,11 +3,15 @@
     "type": "film",
     "projects": [
       {
+        "id": 1,
+        "path": "/film/1",
         "projectName": "L'Alqueria Blanca",
         "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
         "image1": "./images/example1.webp"
       },
       {
+        "id": 2,
+        "path": "/film/2",
         "projectName": "Otra serie",
         "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
         "image1": "./images/example2.webp"
@@ -18,11 +22,15 @@
     "type": "commercials",
     "projects": [
       {
+        "id": 1,
+        "path": "/commercial/1",
         "projectName": "Comercial 1",
         "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
         "image1": "./images/example1.webp"
       },
       {
+        "id": 2,
+        "path": "/commercial/2",
         "projectName": "Comercial 2",
         "description": "Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta dapibus.",
         "image1": "./images/example2.webp"

@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Components
 import { ProjectCardHeader } from "../../Typography/Typography";
@@ -19,11 +20,11 @@ const CardContent = styled.article`
 
 function ProjectCard(props) {
   return (
-    <Card>
-      <ProjectCardHeader>{props.projectName}</ProjectCardHeader>
-      <CardContent>
-        
-      </CardContent>
+    <Card key={props.project.id}>
+      <Link to={props.project.path}>
+        <ProjectCardHeader>{props.project.projectName}</ProjectCardHeader>
+        <CardContent></CardContent>
+      </Link>
     </Card>
   );
 }

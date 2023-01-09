@@ -5,13 +5,13 @@ import styled from "styled-components";
 
 // Components
 import { ProjectTitleH1 } from "../Typography/Typography";
+import ProjectCard from "./components/ProjectCard";
 
 // Data
 import Projects from "../../../data/projects.json";
-import ProjectCard from "./components/ProjectCard";
 
 // Styled component
-const Panel = styled.div`
+export const Panel = styled.div`
   background-color: var(--grey);
   display: flex;
   padding: 12px 24px;
@@ -47,11 +47,7 @@ function ProjectsPanel(props) {
           <ProjectTitleH1>{projectsOnPage.type.toUpperCase()}</ProjectTitleH1>
           <ProjectsList>
             {projectsOnPage.projects.map((item) => (
-              <ProjectCard
-                projectName={item.projectName}
-                projectDescription={item.description}
-                projectThumbnail={item.image1}
-              />
+              <ProjectCard project={item} />
             ))}
           </ProjectsList>
         </>
