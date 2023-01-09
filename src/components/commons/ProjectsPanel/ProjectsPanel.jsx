@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 // Components
 import { ProjectTitleH1 } from "../Typography/Typography";
+import ProjectCard from "./components/ProjectCard";
 
 // Data
 import Projects from "../../../data/projects.json";
@@ -22,9 +23,18 @@ export const Panel = styled.div`
   }
 `;
 
+const ProjectsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 function ProjectsPanel(props) {
   const [projectsOnPage, setProjectsOnPage] = useState();
 
+  /**
+   * Effect hook to get the type projects of the page
+   */
   useEffect(() => {
     let currentProjects = Projects.filter((item) => item.type === props.type);
     setProjectsOnPage(currentProjects[0]);
@@ -32,8 +42,16 @@ function ProjectsPanel(props) {
 
   return (
     <Panel>
-      <ProjectTitleH1>{projectsOnPage ? projectsOnPage.type.toUpperCase() : ""}</ProjectTitleH1>
-      {/* componente lista de proyectos */}
+      {projectsOnPage && (
+        <>
+          <ProjectTitleH1>{projectsOnPage.type.toUpperCase()}</ProjectTitleH1>
+          <ProjectsList>
+            {projectsOnPage.projects.map((item) => (
+              <ProjectCard project={item} />
+            ))}
+          </ProjectsList>
+        </>
+      )}
     </Panel>
   );
 }

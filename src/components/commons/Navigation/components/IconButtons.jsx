@@ -3,17 +3,19 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+// Styled components
+const IconButton = styled.svg`
+  width: 30px;
+  height: 30px;
+  fill: var(--primary);
+  display: flex;
+  align-self: flex-end;
+  @media (min-width: 800px) {
+    display: none;
+  }
+`;
+
 function BurguerIconButton(props) {
-  const IconButton = styled.svg`
-    width: 30px;
-    height: 30px;
-    fill: var(--primary);
-    display: flex;
-    align-self: flex-end;
-    @media (min-width: 800px) {
-      display: none;
-    }
-  `;
   return (
     <IconButton
       onClick={props.handleClick}
@@ -33,16 +35,6 @@ BurguerIconButton.propTypes = {
 };
 
 function CloseIconButton(props) {
-  const IconButton = styled.svg`
-    width: 30px;
-    height: 30px;
-    fill: var(--primary);
-    display: flex;
-    align-self: flex-end;
-    @media (min-width: 800px) {
-      display: none;
-    }
-  `;
   return (
     <IconButton
       onClick={props.handleClick}

@@ -57,12 +57,6 @@ function Menu() {
     return optionPath === location.pathname ? "active" : "";
   }
 
-  // NOT USED, TO BE REMOVE
-  // function getTheme() {
-  //   const theme = location.pathname !== "/" ? "secondary" : "primary";
-  //   return theme;
-  // }
-
   return (
     <>
       {options.map((option) => {

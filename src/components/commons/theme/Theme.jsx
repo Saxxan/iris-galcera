@@ -9,12 +9,6 @@ export const ProjectPage = styled.div`
   color: var(--ice);
 `;
 
-// export const ProjectsPageDeskopt = styled(ProjectPage)`
-//   @media (min-width: 800px) {
-//     background-color: var(--secondary);
-//   }
-// `;
-
 export const HomePage = styled.div`
   width: 100vw;
   height: 100vh;

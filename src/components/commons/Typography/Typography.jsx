@@ -19,6 +19,7 @@ export const SubTitleH3 = styled.h3`
   margin-bottom: -10px;
   color: var(--primary);
   font-family: var(--font-italic);
+  z-index: 2;
 
   @media (min-width: 800px) {
     margin-top: -80px;
@@ -32,4 +33,13 @@ export const ProjectTitleH1 = styled.h1`
   font-weight: 500;
   letter-spacing: 0.5px;
   height: fit-content;
+  width: 100%;
+`;
+
+export const ProjectCardHeader = styled.h2`
+  font-size: clamp(16px, 2vw, 30px);
+  color: var(--ice);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
 `;
