@@ -9,6 +9,7 @@ import ProjectCard from "./components/ProjectCard";
 
 // Data
 import Projects from "../../../data/projects.json";
+import { getCommercials, setCommercial } from "../../../api/database";
 
 // Styled component
 export const Panel = styled.div`
@@ -38,6 +39,7 @@ function ProjectsPanel(props) {
   useEffect(() => {
     let currentProjects = Projects.filter((item) => item.type === props.type);
     setProjectsOnPage(currentProjects[0]);
+    getCommercials();
   }, [props.type]);
 
   return (
