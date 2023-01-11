@@ -1,14 +1,16 @@
 import { collection, addDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-// Commercial projects
+//****************** Commercial projects *******************/
 
-export function getCommercials() {
-  getDoc(doc(db, "projects", "commercials")).then((res) => {
-    console.log(res.data());
-  });
-}
+export const getCommercials = async () => {
+  let projects = await getDoc(doc(db, "projects", "commercials"));
+  return projects.data();
+};
 
-// export function deleteTestData() {
-//   deleteDoc(doc(db, "data-commercials", "G3BtDkm1zcP5CaEnETy5"));
-// }
+//******************  Film projects ***********************/
+
+export const getFilm = async () => {
+  let projects = await getDoc(doc(db, "projects", "film"));
+  return projects.data();
+};

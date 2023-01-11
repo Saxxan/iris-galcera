@@ -8,28 +8,26 @@ import { ProjectPage } from "../../commons/theme/Theme";
 import { ProjectTitleH1 } from "../../commons/Typography/Typography";
 
 // Data
-import Projects from "../../../data/projects.json";
+import { getCommercials, getFilm } from "../../../api/database";
 
 function Project(props) {
   const [project, setProject] = useState();
   const location = useLocation();
 
+  /**
+   * Effect hook to get the project selected
+   */
   useEffect(() => {
-    if (location.pathname.includes("film")) {
-      let currentProjects = Projects.filter((item) => item.type === "film");
-      let currentProject = currentProjects[0].projects.filter(
+    let promise = location.pathname.includes("commercial")
+      ? getCommercials()
+      : getFilm();
+
+    Promise.resolve(promise).then((res) => {
+      let currentProject = res.projects.filter(
         (item) => item.path === location.pathname
       );
       setProject(currentProject[0]);
-    } else {
-      let currentProjects = Projects.filter(
-        (item) => item.type === "commercials"
-      );
-      let currentProject = currentProjects[0].projects.filter(
-        (item) => item.path === location.pathname
-      );
-      setProject(currentProject[0]);
-    }
+    });
   }, [location, setProject]);
 
   return (
@@ -37,7 +35,7 @@ function Project(props) {
       <Navigation />
       {project && (
         <Panel>
-          <ProjectTitleH1>{project.projectName}</ProjectTitleH1>
+          <ProjectTitleH1>{project.projectName.toUpperCase()}</ProjectTitleH1>
         </Panel>
       )}
     </ProjectPage>

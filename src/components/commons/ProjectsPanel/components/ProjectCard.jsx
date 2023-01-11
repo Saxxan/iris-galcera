@@ -20,7 +20,7 @@ const CardContent = styled.article`
 
 function ProjectCard(props) {
   return (
-    <Card key={props.project.id}>
+    <Card>
       <Link to={props.project.path}>
         <ProjectCardHeader>{props.project.projectName}</ProjectCardHeader>
         <CardContent></CardContent>
