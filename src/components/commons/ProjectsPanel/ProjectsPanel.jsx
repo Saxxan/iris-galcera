@@ -8,7 +8,7 @@ import { ProjectTitleH1 } from "../Typography/Typography";
 import ProjectCard from "./components/ProjectCard";
 
 // Data
-import Projects from "../../../data/projects.json";
+import { getCommercials, getFilm } from "../../../api/database";
 
 // Styled component
 export const Panel = styled.div`
@@ -36,8 +36,12 @@ function ProjectsPanel(props) {
    * Effect hook to get the type projects of the page
    */
   useEffect(() => {
-    let currentProjects = Projects.filter((item) => item.type === props.type);
-    setProjectsOnPage(currentProjects[0]);
+    let promise = props.type === "commercials" ? getCommercials() : getFilm();
+
+    Promise.resolve(promise).then((res) => {
+      let currentProjects = res;
+      setProjectsOnPage(currentProjects);
+    });
   }, [props.type]);
 
   return (
@@ -47,7 +51,7 @@ function ProjectsPanel(props) {
           <ProjectTitleH1>{projectsOnPage.type.toUpperCase()}</ProjectTitleH1>
           <ProjectsList>
             {projectsOnPage.projects.map((item) => (
-              <ProjectCard project={item} />
+              <ProjectCard project={item} key={item.id} />
             ))}
           </ProjectsList>
         </>
