@@ -10,6 +10,7 @@ const IconButton = styled.svg`
   fill: var(--primary);
   display: flex;
   align-self: flex-end;
+  transition: transform 0.4s ease-in-out;
   @media (min-width: 800px) {
     display: none;
   }
@@ -42,6 +43,7 @@ function CloseIconButton(props) {
       height="24"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ margin: "12px 6px" }}
     >
       <path d="M13.46 12L19 17.54V19H17.54L12 13.46L6.46 19H5V17.54L10.54 12L5 6.46V5H6.46L12 10.54L17.54 5H19V6.46L13.46 12Z" />
     </IconButton>
@@ -52,4 +54,29 @@ CloseIconButton.propTypes = {
   handleClick: PropTypes.func,
 };
 
-export { BurguerIconButton, CloseIconButton };
+const ArrowsIconButtonBehaviour = styled(IconButton)`
+  @media (min-width: 800px) {
+    display: block;
+  }
+`;
+
+function ArrowIconButton(props) {
+  return (
+    <ArrowsIconButtonBehaviour
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={props.handleClick}
+      style={
+        props.isOpen
+          ? { transform: "rotateY(180deg)" }
+          : { transform: "rotateY(0)" }
+      }
+    >
+      <path d="M16.5 12L8.5 20L7 18.5L13.5 12L7 5.5L8.5 4L16.5 12Z" />
+    </ArrowsIconButtonBehaviour>
+  );
+}
+
+export { BurguerIconButton, CloseIconButton, ArrowIconButton };

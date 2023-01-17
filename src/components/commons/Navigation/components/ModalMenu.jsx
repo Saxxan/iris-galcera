@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 // Components
-import { CloseIconButton } from "./IconButtons";
+import { CloseIconButton } from "../../IconButtons/IconButtons";
 import NavMenu from "./NavMenu";
 
 // Styled components

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // Components
 import NavMenu from "./components/NavMenu";
 import ModalMenu from "./components/ModalMenu";
-import { BurguerIconButton } from "./components/IconButtons";
+import { BurguerIconButton } from "../IconButtons/IconButtons";
 
 // Styled component
 const Nav = styled.nav`
@@ -23,6 +23,9 @@ const Nav = styled.nav`
 function Navigation(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  /**
+   * Function that handles modal close or open action
+   */
   function toggleModalVisibility() {
     setIsModalOpen(!isModalOpen);
   }

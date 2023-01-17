@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import AdminDashboard from "../../AdminDashBoard/AdminDashboard";
 
 // Authentication context
 import { AuthContext } from "../../LoginForm/AuthProvider";
@@ -8,7 +9,7 @@ import { AuthContext } from "../../LoginForm/AuthProvider";
 import LoginForm from "../../LoginForm/LoginForm";
 
 // Styled component
-const AdminTheme = styled.div`
+const AdminTheme = styled.main`
   background-color: var(--grey);
   color: var(--ice);
   display: flex;
@@ -22,7 +23,7 @@ function Admin() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <AdminTheme>{currentUser ? <div>Logged</div> : <LoginForm />}</AdminTheme>
+    <AdminTheme>{currentUser ? <AdminDashboard /> : <LoginForm />}</AdminTheme>
   );
 }
 
