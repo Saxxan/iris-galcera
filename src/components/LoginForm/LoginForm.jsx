@@ -5,6 +5,9 @@ import styled from "styled-components";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
+// Components
+import { SubmitButton } from "../commons/Buttons/Buttons";
+
 // Styled components
 const LoginModal = styled.article`
   padding: 24px;
@@ -21,16 +24,6 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-`;
-
-const SubmitButton = styled.input`
-  background-color: var(--tertiary);
-  color: var(--ice);
-  padding: 12px 24px;
-  margin: 24px 0;
-  border-radius: 6px;
-  border: 1px solid var(--tertiary);
-  font-weight: 600;
 `;
 
 function LoginForm() {

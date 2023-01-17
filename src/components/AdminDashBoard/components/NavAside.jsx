@@ -3,18 +3,34 @@ import styled from "styled-components";
 
 // Components
 import { ArrowIconButton } from "../../commons/IconButtons/IconButtons";
+import { CancelButton } from "../../commons/Buttons/Buttons";
+
+// Firebase auth
+import { auth } from "../../../firebase";
+import { signOut } from "firebase/auth";
 
 // Styled components
 const AsideNavigation = styled.aside`
-  width: 200px;
-  height: 100%;
-  padding: 12px 6px;
+  background-color: var(--grey);
+  box-shadow: var(--grey-shadow) 0px 3px 8px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  padding: 12px;
+  margin-right: 12px;
+
+  @media (min-width: 800px) {
+    padding: 12px 24px;
+  }
 `;
 
-function NavAside() {
+const ProjectsLink = styled.li`
+  margin-bottom: 6px;
+  cursor: pointer;
+`;
+
+function NavAside(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   /**
@@ -24,22 +40,48 @@ function NavAside() {
     setIsMenuOpen(!isMenuOpen);
   }
 
+  /**
+   * Function that handles click on log out button
+   */
+  function handleLogOut() {
+    signOut(auth);
+  }
+
+  function handleClickProjectOption(type) {
+    props.changeProjectType(type);
+    setIsMenuOpen(!isMenuOpen);
+  }
+
   return (
-    <AsideNavigation
-      style={
-        isMenuOpen
-          ? { transform: "translateX(0)" }
-          : { transform: "translateX(-150px)" }
-      }
-    >
+    <AsideNavigation>
       <ArrowIconButton handleClick={toggleNavMenuState} isOpen={isMenuOpen} />
-      <nav>
-        <h2>Proyectos</h2>
-        <ul>
-          <li>Comerciales</li>
-          <li>Cinematográficos</li>
-        </ul>
-      </nav>
+      {isMenuOpen && (
+        <section
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <nav style={{ margin: "24px 0" }}>
+            <h4 style={{ color: "var(--tertiary)", marginBottom: "12px" }}>
+              Proyectos
+            </h4>
+            <ul style={{ listStyleType: "none", marginLeft: "6px" }}>
+              <ProjectsLink
+                onClick={() => handleClickProjectOption("commercials")}
+              >
+                Comerciales
+              </ProjectsLink>
+              <ProjectsLink onClick={() => handleClickProjectOption("film")}>
+                Cinematográfico
+              </ProjectsLink>
+            </ul>
+          </nav>
+          <CancelButton onClick={handleLogOut}>Cerrar sesión</CancelButton>
+        </section>
+      )}
     </AsideNavigation>
   );
 }

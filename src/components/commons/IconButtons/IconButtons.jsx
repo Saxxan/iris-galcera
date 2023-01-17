@@ -11,6 +11,7 @@ const IconButton = styled.svg`
   display: flex;
   align-self: flex-end;
   transition: transform 0.4s ease-in-out;
+  cursor: pointer;
   @media (min-width: 800px) {
     display: none;
   }
@@ -54,7 +55,11 @@ CloseIconButton.propTypes = {
   handleClick: PropTypes.func,
 };
 
-const ArrowsIconButtonBehaviour = styled(IconButton)`
+const ArrowsIconButton = styled(IconButton)`
+  background-color: var(--tertiary);
+  fill: var(--ice);
+  border-radius: 6px;
+
   @media (min-width: 800px) {
     display: block;
   }
@@ -62,7 +67,7 @@ const ArrowsIconButtonBehaviour = styled(IconButton)`
 
 function ArrowIconButton(props) {
   return (
-    <ArrowsIconButtonBehaviour
+    <ArrowsIconButton
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -75,7 +80,7 @@ function ArrowIconButton(props) {
       }
     >
       <path d="M16.5 12L8.5 20L7 18.5L13.5 12L7 5.5L8.5 4L16.5 12Z" />
-    </ArrowsIconButtonBehaviour>
+    </ArrowsIconButton>
   );
 }
 

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import AdminDashboard from "../../AdminDashBoard/AdminDashboard";
 
 // Authentication context
 import { AuthContext } from "../../LoginForm/AuthProvider";
 
 // Components
 import LoginForm from "../../LoginForm/LoginForm";
+import AdminDashboard from "../../AdminDashBoard/AdminDashboard";
 
 // Styled component
 const AdminTheme = styled.main`
