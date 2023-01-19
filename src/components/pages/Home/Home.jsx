@@ -10,6 +10,7 @@ import {
   TitleH1,
   TitleH2,
 } from "../../commons/Typography/Typography";
+import AccesToAdmin from "../../AccessToAdmin/AccesToAdmin";
 
 // Page styled components
 const TitleLayout = styled.main`
@@ -34,6 +35,7 @@ function Home() {
         <SubTitleH3>art department</SubTitleH3>
         <TitleH2>GALCERÀ</TitleH2>
       </TitleLayout>
+      <AccesToAdmin />
     </HomePage>
   );
 }

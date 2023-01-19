@@ -6,6 +6,7 @@ const ButtonBase = styled.button`
   margin: 24px 0;
   border-radius: 6px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const SubmitButton = styled.input`
@@ -16,6 +17,7 @@ const SubmitButton = styled.input`
   margin: 24px 0;
   border-radius: 6px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const CancelButton = styled(ButtonBase)`

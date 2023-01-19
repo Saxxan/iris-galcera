@@ -15,17 +15,28 @@ const Modal = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 12px 5vw;
   flex-direction: column;
   background-color: var(--secondary);
   z-index: 5;
+
+  & > header {
+    width: 90vw;
+    margin: 0 auto;
+    height: 10vh;
+    padding: 12px 6px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
 `;
 
 function ModalMenu(props) {
   return (
     <Modal display={props.display}>
       {/* Icon button to close modal */}
-      <CloseIconButton handleClick={props.handleVisibility} />
+      <header>
+        <CloseIconButton handleClick={props.handleVisibility} />
+      </header>
       {/* Navigation menu */}
       <NavMenu isDeskoptMenu={false} />
     </Modal>
