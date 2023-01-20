@@ -66,20 +66,25 @@ function NavAside(props) {
         >
           <nav style={{ margin: "24px 0" }}>
             <h4 style={{ color: "var(--tertiary)", marginBottom: "12px" }}>
-              Proyectos
+              Projects
             </h4>
             <ul style={{ listStyleType: "none", marginLeft: "6px" }}>
               <ProjectsLink
                 onClick={() => handleClickProjectOption("commercials")}
               >
-                Comerciales
+                Commercials
               </ProjectsLink>
               <ProjectsLink onClick={() => handleClickProjectOption("film")}>
-                Cinematográfico
+                Film
+              </ProjectsLink>
+              <ProjectsLink
+                onClick={() => handleClickProjectOption("tvseries")}
+              >
+                TV Series
               </ProjectsLink>
             </ul>
           </nav>
-          <CancelButton onClick={handleLogOut}>Cerrar sesión</CancelButton>
+          <CancelButton onClick={handleLogOut}>Log out</CancelButton>
         </section>
       )}
     </AsideNavigation>

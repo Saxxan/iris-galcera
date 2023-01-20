@@ -44,7 +44,7 @@ function LoginForm() {
 
   return (
     <LoginModal>
-      <h1>Iniciar sesión</h1>
+      <h1>Log in</h1>
       <Form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -52,13 +52,13 @@ function LoginForm() {
           id="email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="password">Contraseña</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SubmitButton type="submit" value="Iniciar sesión" />
+        <SubmitButton type="submit" value="Log in" />
       </Form>
     </LoginModal>
   );

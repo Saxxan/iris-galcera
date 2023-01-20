@@ -7,6 +7,7 @@ const ButtonBase = styled.button`
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
+  background: transparent;
 `;
 
 const SubmitButton = styled.input`
@@ -25,4 +26,17 @@ const CancelButton = styled(ButtonBase)`
   border: 1px solid var(--primary);
 `;
 
-export { SubmitButton, CancelButton };
+const AddButton = styled(ButtonBase)`
+  color: var(--tertiary);
+  border: 2px solid var(--tertiary);
+  border-radius: 24px;
+  margin-right: 12px;
+`;
+
+const DeleteButton = styled(ButtonBase)`
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 24px;
+`;
+
+export { SubmitButton, CancelButton, AddButton, DeleteButton };
