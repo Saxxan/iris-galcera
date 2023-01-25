@@ -43,7 +43,7 @@ function DashboarMain(props) {
       {projects && (
         <>
           <h1>{projects.type.toUpperCase()}</h1>
-          <ProjectsTable projects={projects.projects} />
+          <ProjectsTable projects={projects.projects} type={projects.type} />
         </>
       )}
     </MainDash>
