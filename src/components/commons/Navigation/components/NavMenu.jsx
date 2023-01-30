@@ -51,6 +51,7 @@ function Menu() {
     { name: "HOME", path: "/", key: "1" },
     { name: "COMMERCIALS", path: "/commercials", key: "2" },
     { name: "FILM", path: "/film", key: "3" },
+    { name: "TV SERIES", path: "/tvseries", key: "4" },
   ];
 
   function handleOptionSelected(optionPath) {

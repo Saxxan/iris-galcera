@@ -8,7 +8,7 @@ import { ProjectTitleH1 } from "../Typography/Typography";
 import ProjectCard from "./components/ProjectCard";
 
 // Data
-import { getCommercials, getFilm } from "../../../api/database";
+import { getCommercials, getFilm, getTVSeries } from "../../../api/database";
 
 // Styled component
 export const Panel = styled.div`
@@ -36,7 +36,15 @@ function ProjectsPanel(props) {
    * Effect hook to get the type projects of the page
    */
   useEffect(() => {
-    let promise = props.type === "commercials" ? getCommercials() : getFilm();
+    let promise;
+
+    if (props.type === "commercials") {
+      promise = getCommercials();
+    } else if (props.type === "film") {
+      promise = getFilm();
+    } else {
+      promise = getTVSeries();
+    }
 
     Promise.resolve(promise).then((res) => {
       let currentProjects = res;

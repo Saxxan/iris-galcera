@@ -10,6 +10,8 @@ const IconButton = styled.svg`
   fill: var(--primary);
   display: flex;
   align-self: flex-end;
+  transition: transform 0.4s ease-in-out;
+  cursor: pointer;
   @media (min-width: 800px) {
     display: none;
   }
@@ -52,4 +54,33 @@ CloseIconButton.propTypes = {
   handleClick: PropTypes.func,
 };
 
-export { BurguerIconButton, CloseIconButton };
+const ArrowsIconButton = styled(IconButton)`
+  background-color: var(--tertiary);
+  fill: var(--ice);
+  border-radius: 6px;
+
+  @media (min-width: 800px) {
+    display: block;
+  }
+`;
+
+function ArrowIconButton(props) {
+  return (
+    <ArrowsIconButton
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={props.handleClick}
+      style={
+        props.isOpen
+          ? { transform: "rotateY(180deg)" }
+          : { transform: "rotateY(0)" }
+      }
+    >
+      <path d="M16.5 12L8.5 20L7 18.5L13.5 12L7 5.5L8.5 4L16.5 12Z" />
+    </ArrowsIconButton>
+  );
+}
+
+export { BurguerIconButton, CloseIconButton, ArrowIconButton };
