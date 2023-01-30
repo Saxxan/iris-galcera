@@ -33,40 +33,42 @@ function AddProjectModal(props) {
    * Function that handles submit form for add a new project
    * @param {*} e
    */
-  function handleAddProject() {
+  function handleAddProject(e) {
+    e.preventDefault();
+
     let newProject = {
       projectName: projectName,
+      // projectImages: projectImages,
     };
 
-    console.log(projectName);
-    console.log(projectImages);
+    let promise = updateProjects(props.type, newProject);
 
-    // let promise = updateProjects(props.type, newProject);
-
-    // Promise.resolve(promise).then((res) => {
-    //   props.handleClose();
-    // });
+    Promise.resolve(promise).then((res) => {
+      props.handleClose();
+    });
   }
 
   return (
     <Modal>
       <h2>Add new project</h2>
-      <label htmlFor="projectName">Project name</label>
-      <input
-        type="text"
-        id="projectName"
-        onChange={(e) => setProjectName(e.target.value)}
-      />
-      <label htmlFor="projectImages">Project images</label>
-      <input
-        type="file"
-        name="files[]"
-        data-multiple-caption="{count} files selected"
-        multiple
-        id="projectImages"
-        onChange={(e) => setProjectImages(e.target.files)}
-      />
-      <AddButton onClick={handleAddProject}>Add new Project</AddButton>
+      <form>
+        <label htmlFor="projectName">Project name</label>
+        <input
+          type="text"
+          id="projectName"
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+        {/* <label htmlFor="projectImages">Project images</label>
+        <input
+          type="file"
+          name="files[]"
+          data-multiple-caption="{count} files selected"
+          multiple
+          id="projectImages"
+          onChange={(e) => setProjectImages(e.target.files)}
+        /> */}
+        <AddButton onClick={handleAddProject}>Add new Project</AddButton>
+      </form>
     </Modal>
   );
 }

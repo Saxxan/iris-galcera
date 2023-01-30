@@ -41,7 +41,7 @@ export const getTVSeries = async () => {
  */
 export const updateProjects = async (projectType, newProject) => {
   let newProjectType = projectType === "tv series" ? "tvseries" : projectType;
-  // Get the data on database
+  // Get the data from database
   let projects = await getDoc(doc(db, "projects", newProjectType));
   projects = projects.data();
 
@@ -58,5 +58,28 @@ export const updateProjects = async (projectType, newProject) => {
   projects.projects.push(newAddedProject);
 
   // Send updated projects to database
+  await setDoc(doc(db, "projects", newProjectType), projects);
+};
+
+/**
+ * Function to delete a project on database
+ * @param {*} projectType
+ * @param {*} projectId
+ */
+export const deleteProject = async (projectType, projectId) => {
+  let newProjectType = projectType === "tv series" ? "tvseries" : projectType;
+
+  // Get the data from database
+  let projects = await getDoc(doc(db, "projects", newProjectType));
+  projects = projects.data();
+
+  // Filter the projects which have different ID from the given
+  projects.projects.forEach((item) => {
+    if (item.id === Number(projectId)) {
+      let index = projects.projects.indexOf(item);
+      projects.projects.splice(index, 1);
+    }
+  });
+
   await setDoc(doc(db, "projects", newProjectType), projects);
 };
