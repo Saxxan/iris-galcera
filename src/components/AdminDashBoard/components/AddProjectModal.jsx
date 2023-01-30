@@ -27,6 +27,7 @@ const Modal = styled.div`
 
 function AddProjectModal(props) {
   const [projectName, setProjectName] = useState("");
+  const [projectImages, setProjectImages] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -37,11 +38,14 @@ function AddProjectModal(props) {
       projectName: projectName,
     };
 
-    let promise = updateProjects(props.type, newProject);
+    console.log(projectName);
+    console.log(projectImages);
 
-    Promise.resolve(promise).then((res) => {
-      props.handleClose();
-    });
+    // let promise = updateProjects(props.type, newProject);
+
+    // Promise.resolve(promise).then((res) => {
+    //   props.handleClose();
+    // });
   }
 
   return (
@@ -52,6 +56,15 @@ function AddProjectModal(props) {
         type="text"
         id="projectName"
         onChange={(e) => setProjectName(e.target.value)}
+      />
+      <label htmlFor="projectImages">Project images</label>
+      <input
+        type="file"
+        name="files[]"
+        data-multiple-caption="{count} files selected"
+        multiple
+        id="projectImages"
+        onChange={(e) => setProjectImages(e.target.files)}
       />
       <AddButton onClick={handleAddProject}>Add new Project</AddButton>
     </Modal>
