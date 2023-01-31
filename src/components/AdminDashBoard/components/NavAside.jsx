@@ -33,6 +33,12 @@ const ProjectsLink = styled.li`
 function NavAside(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const projectTypes = [
+    { key: "commercials", title: "Commercials" },
+    { key: "film", title: "Film" },
+    { key: "tvseries", title: "TV Series" },
+  ];
+
   /**
    * Function to handle open the navigation admin menu
    */
@@ -69,19 +75,14 @@ function NavAside(props) {
               Projects
             </h4>
             <ul style={{ listStyleType: "none", marginLeft: "6px" }}>
-              <ProjectsLink
-                onClick={() => handleClickProjectOption("commercials")}
-              >
-                Commercials
-              </ProjectsLink>
-              <ProjectsLink onClick={() => handleClickProjectOption("film")}>
-                Film
-              </ProjectsLink>
-              <ProjectsLink
-                onClick={() => handleClickProjectOption("tvseries")}
-              >
-                TV Series
-              </ProjectsLink>
+              {projectTypes.map((item, index) => (
+                <ProjectsLink
+                  key={index}
+                  onClick={() => handleClickProjectOption(item.key)}
+                >
+                  {item.title}
+                </ProjectsLink>
+              ))}
             </ul>
           </nav>
           <CancelButton onClick={handleLogOut}>Log out</CancelButton>

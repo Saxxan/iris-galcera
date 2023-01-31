@@ -30,6 +30,7 @@ const AddButton = styled(ButtonBase)`
   color: var(--tertiary);
   border: 2px solid var(--tertiary);
   border-radius: 24px;
+  margin: 0;
   margin-right: 12px;
 `;
 
@@ -37,6 +38,7 @@ const DeleteButton = styled(ButtonBase)`
   color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: 24px;
+  margin: 0;
 `;
 
 export { SubmitButton, CancelButton, AddButton, DeleteButton };

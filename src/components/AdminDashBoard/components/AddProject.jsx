@@ -9,7 +9,7 @@ import { updateProjects } from "../../../api/database";
 import { AddButton } from "../../commons/Buttons/Buttons";
 
 // Styled components
-const Modal = styled.div`
+const ModalLayout = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -23,11 +23,27 @@ const Modal = styled.div`
   flex-direction: column;
   gap: 20px;
   align-items: center;
+
+  & > form {
+    margin: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    & > input,
+    & > textarea {
+      margin-bottom: 6px;
+    }
+
+    & > button {
+      margin-top: 12px;
+    }
+  }
 `;
 
-function AddProjectModal(props) {
+function AddProject(props) {
   const [projectName, setProjectName] = useState("");
-  const [projectImages, setProjectImages] = useState();
+  // const [projectImages, setProjectImages] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -49,7 +65,7 @@ function AddProjectModal(props) {
   }
 
   return (
-    <Modal>
+    <ModalLayout>
       <h2>Add new project</h2>
       <form>
         <label htmlFor="projectName">Project name</label>
@@ -58,19 +74,24 @@ function AddProjectModal(props) {
           id="projectName"
           onChange={(e) => setProjectName(e.target.value)}
         />
-        {/* <label htmlFor="projectImages">Project images</label>
+        <label htmlFor="projectDescription">Project description</label>
+        <textarea
+          id="projectDescription"
+          // onChange={(e) => setProjectName(e.target.value)}
+        />
+        <label htmlFor="projectImages">Project images</label>
         <input
           type="file"
           name="files[]"
           data-multiple-caption="{count} files selected"
           multiple
           id="projectImages"
-          onChange={(e) => setProjectImages(e.target.files)}
-        /> */}
+          // onChange={(e) => setProjectImages(e.target.files)}
+        />
         <AddButton onClick={handleAddProject}>Add new Project</AddButton>
       </form>
-    </Modal>
+    </ModalLayout>
   );
 }
 
-export default AddProjectModal;
+export default AddProject;

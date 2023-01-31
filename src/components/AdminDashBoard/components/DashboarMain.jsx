@@ -17,6 +17,7 @@ const MainDash = styled.main`
 
 function DashboarMain(props) {
   const [projects, setProjects] = useState();
+  const [refresh, setRefresh] = useState(false);
 
   /**
    * Effect hook to get the type projects of the page
@@ -35,15 +36,23 @@ function DashboarMain(props) {
     Promise.resolve(promise).then((res) => {
       let currentProjects = res;
       setProjects(currentProjects);
+
+      if (refresh) {
+        setRefresh(false);
+      }
     });
-  }, [props.type]);
+  }, [props.type, refresh]);
 
   return (
     <MainDash>
       {projects && (
         <>
           <h1>{projects.type.toUpperCase()}</h1>
-          <ProjectsTable projects={projects.projects} type={projects.type} />
+          <ProjectsTable
+            projects={projects.projects}
+            type={projects.type}
+            refresh={setRefresh}
+          />
         </>
       )}
     </MainDash>
