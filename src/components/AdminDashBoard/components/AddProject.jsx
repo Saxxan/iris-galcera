@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { updateProjects } from "../../../api/database";
 
 // Components
-import { AddButton } from "../../commons/Buttons/Buttons";
+import { AcceptButton, CancelButton } from "../../commons/Buttons/Buttons";
 
 // Styled components
 const ModalLayout = styled.div`
@@ -38,6 +38,11 @@ const ModalLayout = styled.div`
     & > button {
       margin-top: 12px;
     }
+  }
+
+  & > footer {
+    display: flex;
+    gap: 6px;
   }
 `;
 
@@ -88,8 +93,11 @@ function AddProject(props) {
           id="projectImages"
           // onChange={(e) => setProjectImages(e.target.files)}
         />
-        <AddButton onClick={handleAddProject}>Add new Project</AddButton>
       </form>
+      <footer>
+        <CancelButton onClick={props.handleClose}>Cancel</CancelButton>
+        <AcceptButton onClick={handleAddProject}>Save changes</AcceptButton>
+      </footer>
     </ModalLayout>
   );
 }

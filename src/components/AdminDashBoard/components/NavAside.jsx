@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Components
 import { ArrowIconButton } from "../../commons/IconButtons/IconButtons";
+import ArrowLeft from "../../commons/Icons/ArrowLeft";
 import { CancelButton } from "../../commons/Buttons/Buttons";
 
 // Firebase auth
@@ -28,6 +30,16 @@ const AsideNavigation = styled.aside`
 const ProjectsLink = styled.li`
   margin-bottom: 6px;
   cursor: pointer;
+`;
+
+const LinkToHome = styled(Link)`
+  text-decoration: none;
+  color: var(--ice);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.8s ease-out;
 `;
 
 function NavAside(props) {
@@ -85,7 +97,13 @@ function NavAside(props) {
               ))}
             </ul>
           </nav>
-          <CancelButton onClick={handleLogOut}>Log out</CancelButton>
+          <section>
+            <LinkToHome to="/">
+              <ArrowLeft fill="var(--ice)" />
+              <span>Portfolio</span>
+            </LinkToHome>
+            <CancelButton onClick={handleLogOut}>Log out</CancelButton>
+          </section>
         </section>
       )}
     </AsideNavigation>

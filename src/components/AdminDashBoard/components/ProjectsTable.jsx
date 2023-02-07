@@ -13,8 +13,8 @@ import EditProject from "./EditProject";
 
 // Styled components
 const Table = styled.table`
-  width: 80%;
-  max-width: 700px;
+  width: 100%;
+  max-width: 800px;
 
   & > tr {
     margin: 0;
