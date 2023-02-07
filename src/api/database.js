@@ -1,5 +1,6 @@
 import { getDoc, doc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 //****************** Commercial projects *******************/
 
@@ -53,6 +54,29 @@ export const updateProjects = async (projectType, newProject) => {
   const path = `/${newProjectType}/${newAddedProject.projectName}`;
   newAddedProject.id = id;
   newAddedProject.path = path;
+  newAddedProject.filesPaths = [];
+
+  // Managing files
+  for (let i = 0; i < newAddedProject.projectImages.length; i++) {
+    let fileToUpload = newAddedProject.projectImages.item(i);
+
+    // Create file storage reference
+    let storageRef = ref(storage, `files/${fileToUpload.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, fileToUpload);
+
+    uploadTask.on(
+      "state_changed",
+      () => {
+        console.log("File uploaded succesfully");
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          newAddedProject.filesPaths.push(downloadURL);
+        });
+      },
+      (error) => {
+        console.log("Fail trying to upload the file");
+      }
+    );
+  }
 
   // Add the new project to list of projects
   projects.projects.push(newAddedProject);

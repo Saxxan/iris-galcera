@@ -48,7 +48,7 @@ const ModalLayout = styled.div`
 
 function AddProject(props) {
   const [projectName, setProjectName] = useState("");
-  // const [projectImages, setProjectImages] = useState();
+  const [projectImages, setProjectImages] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -59,7 +59,7 @@ function AddProject(props) {
 
     let newProject = {
       projectName: projectName,
-      // projectImages: projectImages,
+      projectImages: projectImages,
     };
 
     let promise = updateProjects(props.type, newProject);
@@ -82,16 +82,16 @@ function AddProject(props) {
         <label htmlFor="projectDescription">Project description</label>
         <textarea
           id="projectDescription"
-          // onChange={(e) => setProjectName(e.target.value)}
+          // onChange={(e) => setProjectDescription(e.target.value)}
         />
         <label htmlFor="projectImages">Project images</label>
         <input
           type="file"
-          name="files[]"
+          name="files"
           data-multiple-caption="{count} files selected"
           multiple
           id="projectImages"
-          // onChange={(e) => setProjectImages(e.target.files)}
+          onChange={(e) => setProjectImages(e.target.files)}
         />
       </form>
       <footer>
