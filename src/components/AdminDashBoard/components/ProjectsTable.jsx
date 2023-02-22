@@ -130,7 +130,7 @@ function ProjectsTable(props) {
         <AddButton onClick={handleClickAddButton}>Add project</AddButton>
         <DeleteButton onClick={handleDeleteClick}>Delete project</DeleteButton>
       </section>
-      {projects.length ? (
+      {projects ? (
         <Table>
           <thead>
             <tr>

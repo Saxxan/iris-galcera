@@ -6,6 +6,9 @@ import styled from "styled-components";
 import { getCommercials, getFilmSeries, getTV } from "../../../api/database";
 import ProjectsTable from "./ProjectsTable";
 
+// Components
+import { ProjectTitleH1 } from "../../commons/Typography/Typography";
+
 // Styled components
 const MainDash = styled.main`
   width: 100%;
@@ -13,6 +16,13 @@ const MainDash = styled.main`
   background-color: var(--grey);
   box-shadow: var(--grey-shadow) 0px 3px 8px;
   border-radius: 6px;
+`;
+
+const WelcomePage = styled.section`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 function DashboarMain(props) {
@@ -32,9 +42,11 @@ function DashboarMain(props) {
     } else if (props.type === "filmseries") {
       promise = getFilmSeries();
       setProjectsTitle("film and series");
-    } else {
+    } else if (props.type === "tv") {
       promise = getTV();
       setProjectsTitle("tv");
+    } else {
+      promise = null;
     }
 
     Promise.resolve(promise).then((res) => {
@@ -49,15 +61,19 @@ function DashboarMain(props) {
 
   return (
     <MainDash>
-      {projects && (
+      {projects ? (
         <>
-          <h1>{projectsTitle.toUpperCase()}</h1>
+          <ProjectTitleH1>{projectsTitle.toUpperCase()}</ProjectTitleH1>
           <ProjectsTable
             projects={projects.projects}
             type={projects.type}
             refresh={setRefresh}
           />
         </>
+      ) : (
+        <WelcomePage>
+          <ProjectTitleH1>Benvolguda al teu portfolio</ProjectTitleH1>
+        </WelcomePage>
       )}
     </MainDash>
   );

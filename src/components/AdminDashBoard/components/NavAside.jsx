@@ -19,7 +19,7 @@ const AsideNavigation = styled.aside`
   display: flex;
   flex-direction: column;
   transition: width 0.4s ease-in-out;
-  padding: 12px;
+  padding: 6px;
   margin-right: 12px;
 
   @media (min-width: 800px) {
@@ -33,6 +33,7 @@ const AsideMenuOpen = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const ProjectsLink = styled.li`
@@ -51,7 +52,7 @@ const LinkToHome = styled(Link)`
 `;
 
 function NavAside(props) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
   const projectTypes = [
     { key: "commercials", title: "Commercials" },
@@ -75,7 +76,7 @@ function NavAside(props) {
 
   function handleClickProjectOption(type) {
     props.changeProjectType(type);
-    setIsMenuOpen(!isMenuOpen);
+    //setIsMenuOpen(!isMenuOpen);
   }
 
   return (
