@@ -7,16 +7,21 @@ import PropTypes from "prop-types";
 import NavMenu from "./components/NavMenu";
 import ModalMenu from "./components/ModalMenu";
 import { BurguerIconButton } from "../IconButtons/IconButtons";
+import { ProjectTitleH1 } from "../Typography/Typography";
 
 // Styled component
-const Nav = styled.nav`
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
   width: 90vw;
   height: 10vh;
   margin: 0 auto;
   padding: 12px 6px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -31,8 +36,9 @@ function Navigation(props) {
   }
 
   return (
-    <>
-      <Nav>
+    <Header>
+      <ProjectTitleH1>{props.title.toUpperCase()}</ProjectTitleH1>
+      <nav>
         {/* Burger icon */}
         <BurguerIconButton
           handleClick={toggleModalVisibility}
@@ -40,13 +46,13 @@ function Navigation(props) {
         />
         {/* Deskopt menu */}
         <NavMenu isDeskoptMenu={true} />
-      </Nav>
+      </nav>
       {/* Modal menu */}
       <ModalMenu
         display={isModalOpen ? "flex" : "none"}
         handleVisibility={toggleModalVisibility}
       />
-    </>
+    </Header>
   );
 }
 

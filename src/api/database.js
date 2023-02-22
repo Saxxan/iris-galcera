@@ -19,8 +19,8 @@ export const getCommercials = async () => {
  * Function to get the film projects from database
  * @returns film projects
  */
-export const getFilm = async () => {
-  let projects = await getDoc(doc(db, "projects", "film"));
+export const getFilmSeries = async () => {
+  let projects = await getDoc(doc(db, "projects", "filmseries"));
   return projects.data();
 };
 
@@ -30,8 +30,8 @@ export const getFilm = async () => {
  * Function to get TV series projects from database
  * @returns TV series projects
  */
-export const getTVSeries = async () => {
-  let projects = await getDoc(doc(db, "projects", "tvseries"));
+export const getTV = async () => {
+  let projects = await getDoc(doc(db, "projects", "tv"));
   return projects.data();
 };
 
@@ -41,10 +41,13 @@ export const getTVSeries = async () => {
  * @param {*} newProject
  */
 export const updateProjects = async (projectType, newProject) => {
-  let newProjectType = projectType === "tv series" ? "tvseries" : projectType;
+  let newProjectType = projectType;
+
   // Get the data from database
   let projects = await getDoc(doc(db, "projects", newProjectType));
   projects = projects.data();
+
+  console.log("descarga de los proyectos", projects);
 
   // Get the new project to be added
   let newAddedProject = newProject;
@@ -66,10 +69,10 @@ export const updateProjects = async (projectType, newProject) => {
 
     uploadTask.on(
       "state_changed",
-      () => {
+      (snapshot) => {
         console.log("File uploaded succesfully");
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          newAddedProject.filesPaths.push(downloadURL);
+          newAddedProject.filesPaths.concat(downloadURL);
         });
       },
       (error) => {
@@ -79,7 +82,7 @@ export const updateProjects = async (projectType, newProject) => {
   }
 
   // Add the new project to list of projects
-  projects.projects.push(newAddedProject);
+  projects.projects = [...projects.projects, newAddedProject];
 
   // Send updated projects to database
   await setDoc(doc(db, "projects", newProjectType), projects);
@@ -91,7 +94,7 @@ export const updateProjects = async (projectType, newProject) => {
  * @param {*} projectId
  */
 export const deleteProject = async (projectType, projectId) => {
-  let newProjectType = projectType === "tv series" ? "tvseries" : projectType;
+  let newProjectType = projectType;
 
   // Get the data from database
   let projects = await getDoc(doc(db, "projects", newProjectType));

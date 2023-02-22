@@ -8,7 +8,7 @@ import { ProjectPage } from "../../commons/theme/Theme";
 import { ProjectTitleH1 } from "../../commons/Typography/Typography";
 
 // Data
-import { getCommercials, getFilm } from "../../../api/database";
+import { getCommercials, getFilmSeries, getTV } from "../../../api/database";
 
 function Project(props) {
   const [project, setProject] = useState();
@@ -18,11 +18,20 @@ function Project(props) {
    * Effect hook to get the project selected
    */
   useEffect(() => {
-    let promise = location.pathname.includes("commercial")
-      ? getCommercials()
-      : getFilm();
+    let promise;
+
+    if (location.pathname.includes("commercial")) {
+      promise = getCommercials();
+    } else if (location.pathname.includes("filmseries")) {
+      promise = getFilmSeries();
+    } else if (location.pathname.includes("tv")) {
+      promise = getTV();
+    } else {
+      promise = null;
+    }
 
     Promise.resolve(promise).then((res) => {
+      console.log(res.projects);
       let currentProject = res.projects.filter(
         (item) => item.path === location.pathname
       );
@@ -32,11 +41,13 @@ function Project(props) {
 
   return (
     <ProjectPage>
-      <Navigation />
       {project && (
-        <Panel>
-          <ProjectTitleH1>{project.projectName.toUpperCase()}</ProjectTitleH1>
-        </Panel>
+        <>
+          <Navigation title={project.projectName} />
+          <Panel>
+            <ProjectTitleH1>{project.projectName.toUpperCase()}</ProjectTitleH1>
+          </Panel>
+        </>
       )}
     </ProjectPage>
   );

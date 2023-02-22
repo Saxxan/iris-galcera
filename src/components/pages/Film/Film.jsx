@@ -9,8 +9,8 @@ import { ProjectPage } from "../../commons/theme/Theme";
 function Film() {
   return (
     <ProjectPage>
-      <Navigation />
-      <ProjectsPanel type="film" />
+      <Navigation title="film and series" />
+      <ProjectsPanel type="filmseries" />
     </ProjectPage>
   );
 }

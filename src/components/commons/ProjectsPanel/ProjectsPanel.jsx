@@ -4,18 +4,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Components
-import { ProjectTitleH1 } from "../Typography/Typography";
 import ProjectCard from "./components/ProjectCard";
 
 // Data
-import { getCommercials, getFilm, getTVSeries } from "../../../api/database";
+import { getCommercials, getFilmSeries, getTV } from "../../../api/database";
 
 // Styled component
 export const Panel = styled.div`
   background-color: var(--grey);
   display: flex;
   padding: 12px 24px;
-  height: 90vh;
 
   @media (min-width: 800px) {
     margin: 0 5vw;
@@ -40,10 +38,10 @@ function ProjectsPanel(props) {
 
     if (props.type === "commercials") {
       promise = getCommercials();
-    } else if (props.type === "film") {
-      promise = getFilm();
+    } else if (props.type === "filmseries") {
+      promise = getFilmSeries();
     } else {
-      promise = getTVSeries();
+      promise = getTV();
     }
 
     Promise.resolve(promise).then((res) => {
@@ -55,14 +53,11 @@ function ProjectsPanel(props) {
   return (
     <Panel>
       {projectsOnPage && (
-        <>
-          <ProjectTitleH1>{projectsOnPage.type.toUpperCase()}</ProjectTitleH1>
-          <ProjectsList>
-            {projectsOnPage.projects.map((item) => (
-              <ProjectCard project={item} key={item.id} />
-            ))}
-          </ProjectsList>
-        </>
+        <ProjectsList>
+          {projectsOnPage.projects.map((item) => (
+            <ProjectCard project={item} key={item.id} />
+          ))}
+        </ProjectsList>
       )}
     </Panel>
   );

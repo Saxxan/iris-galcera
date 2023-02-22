@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // Data
-import { getCommercials, getFilm, getTVSeries } from "../../../api/database";
+import { getCommercials, getFilmSeries, getTV } from "../../../api/database";
 import ProjectsTable from "./ProjectsTable";
 
 // Styled components
@@ -17,6 +17,7 @@ const MainDash = styled.main`
 
 function DashboarMain(props) {
   const [projects, setProjects] = useState();
+  const [projectsTitle, setProjectsTitle] = useState("");
   const [refresh, setRefresh] = useState(false);
 
   /**
@@ -27,10 +28,13 @@ function DashboarMain(props) {
 
     if (props.type === "commercials") {
       promise = getCommercials();
-    } else if (props.type === "film") {
-      promise = getFilm();
+      setProjectsTitle("commercials");
+    } else if (props.type === "filmseries") {
+      promise = getFilmSeries();
+      setProjectsTitle("film and series");
     } else {
-      promise = getTVSeries();
+      promise = getTV();
+      setProjectsTitle("tv");
     }
 
     Promise.resolve(promise).then((res) => {
@@ -47,7 +51,7 @@ function DashboarMain(props) {
     <MainDash>
       {projects && (
         <>
-          <h1>{projects.type.toUpperCase()}</h1>
+          <h1>{projectsTitle.toUpperCase()}</h1>
           <ProjectsTable
             projects={projects.projects}
             type={projects.type}

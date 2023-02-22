@@ -9,7 +9,7 @@ import { ProjectPage } from "../../commons/theme/Theme";
 function Commercials() {
   return (
     <ProjectPage>
-      <Navigation />
+      <Navigation title="commercials" />
       <ProjectsPanel type="commercials" />
     </ProjectPage>
   );

@@ -130,44 +130,48 @@ function ProjectsTable(props) {
         <AddButton onClick={handleClickAddButton}>Add project</AddButton>
         <DeleteButton onClick={handleDeleteClick}>Delete project</DeleteButton>
       </section>
-      <Table>
-        <thead>
-          <tr>
-            <th style={{ width: "37px" }} />
-            <th style={{ width: "50px" }}>
-              <b>ID</b>
-            </th>
-            <th>
-              <b>Project name</b>
-            </th>
-            <th>
-              <b>Edit</b>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects &&
-            projects.map((project) => (
-              <tr key={project.id}>
-                <td style={{ width: "37px" }}>
-                  <input
-                    type="checkbox"
-                    id={project.id}
-                    style={{ cursor: "pointer" }}
-                    onChange={(e) => handleCheckboxChange(e)}
-                  />
-                </td>
-                <td style={{ width: "37px" }}>{project.id}</td>
-                <td>{project.projectName}</td>
-                <td>
-                  <EditProjectIconButton
-                    handleClick={() => handleClickEditButton(project)}
-                  />
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+      {projects.length ? (
+        <Table>
+          <thead>
+            <tr>
+              <th style={{ width: "37px" }} />
+              <th style={{ width: "50px" }}>
+                <b>ID</b>
+              </th>
+              <th>
+                <b>Project name</b>
+              </th>
+              <th>
+                <b>Edit</b>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {projects &&
+              projects.map((project) => (
+                <tr key={project.id}>
+                  <td style={{ width: "37px" }}>
+                    <input
+                      type="checkbox"
+                      id={project.id}
+                      style={{ cursor: "pointer" }}
+                      onChange={(e) => handleCheckboxChange(e)}
+                    />
+                  </td>
+                  <td style={{ width: "37px" }}>{project.id}</td>
+                  <td>{project.projectName}</td>
+                  <td>
+                    <EditProjectIconButton
+                      handleClick={() => handleClickEditButton(project)}
+                    />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+      ) : (
+        <p>No hay proyectos de este tipo.</p>
+      )}
     </>
   );
 }

@@ -50,8 +50,8 @@ function Menu() {
   const options = [
     { name: "HOME", path: "/", key: "1" },
     { name: "COMMERCIALS", path: "/commercials", key: "2" },
-    { name: "FILM", path: "/film", key: "3" },
-    { name: "TV SERIES", path: "/tvseries", key: "4" },
+    { name: "FILM AND SERIES", path: "/filmseries", key: "3" },
+    { name: "TV", path: "/tv", key: "4" },
   ];
 
   function handleOptionSelected(optionPath) {

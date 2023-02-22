@@ -27,6 +27,14 @@ const AsideNavigation = styled.aside`
   }
 `;
 
+const AsideMenuOpen = styled.section`
+  width: 125px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const ProjectsLink = styled.li`
   margin-bottom: 6px;
   cursor: pointer;
@@ -47,8 +55,8 @@ function NavAside(props) {
 
   const projectTypes = [
     { key: "commercials", title: "Commercials" },
-    { key: "film", title: "Film" },
-    { key: "tvseries", title: "TV Series" },
+    { key: "filmseries", title: "Film and Series" },
+    { key: "tv", title: "TV" },
   ];
 
   /**
@@ -74,14 +82,7 @@ function NavAside(props) {
     <AsideNavigation>
       <ArrowIconButton handleClick={toggleNavMenuState} isOpen={isMenuOpen} />
       {isMenuOpen && (
-        <section
-          style={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
+        <AsideMenuOpen>
           <nav style={{ margin: "24px 0" }}>
             <h4 style={{ color: "var(--tertiary)", marginBottom: "12px" }}>
               Projects
@@ -104,7 +105,7 @@ function NavAside(props) {
             </LinkToHome>
             <CancelButton onClick={handleLogOut}>Log out</CancelButton>
           </section>
-        </section>
+        </AsideMenuOpen>
       )}
     </AsideNavigation>
   );

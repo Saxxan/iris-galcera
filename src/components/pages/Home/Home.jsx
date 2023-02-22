@@ -29,7 +29,7 @@ const TitleLayout = styled.main`
 function Home() {
   return (
     <HomePage>
-      <Navigation />
+      <Navigation title="" />
       <TitleLayout>
         <TitleH1>IRIS</TitleH1>
         <SubTitleH3>art department</SubTitleH3>

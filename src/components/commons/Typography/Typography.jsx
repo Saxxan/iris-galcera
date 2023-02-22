@@ -32,8 +32,6 @@ export const ProjectTitleH1 = styled.h1`
   color: var(--ice);
   font-weight: 500;
   letter-spacing: 0.5px;
-  height: fit-content;
-  width: 100%;
 `;
 
 export const ProjectCardHeader = styled.h2`
