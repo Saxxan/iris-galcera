@@ -47,8 +47,6 @@ export const updateProjects = async (projectType, newProject) => {
   let projects = await getDoc(doc(db, "projects", newProjectType));
   projects = projects.data();
 
-  console.log("descarga de los proyectos", projects);
-
   // Get the new project to be added
   let newAddedProject = newProject;
 
@@ -57,29 +55,29 @@ export const updateProjects = async (projectType, newProject) => {
   const path = `/${newProjectType}/${newAddedProject.projectName}`;
   newAddedProject.id = id;
   newAddedProject.path = path;
-  newAddedProject.filesPaths = [];
+  // newAddedProject.filesPaths = [];
 
   // Managing files
-  for (let i = 0; i < newAddedProject.projectImages.length; i++) {
-    let fileToUpload = newAddedProject.projectImages.item(i);
+  // for (let i = 0; i < newAddedProject.projectImages.length; i++) {
+  //   let fileToUpload = newAddedProject.projectImages.item(i);
 
-    // Create file storage reference
-    let storageRef = ref(storage, `files/${fileToUpload.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, fileToUpload);
+  //   // Create file storage reference
+  //   let storageRef = ref(storage, `files/${fileToUpload.name}`);
+  //   const uploadTask = uploadBytesResumable(storageRef, fileToUpload);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        console.log("File uploaded succesfully");
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          newAddedProject.filesPaths.concat(downloadURL);
-        });
-      },
-      (error) => {
-        console.log("Fail trying to upload the file");
-      }
-    );
-  }
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       console.log("File uploaded succesfully");
+  //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //         newAddedProject.filesPaths.concat(downloadURL);
+  //       });
+  //     },
+  //     (error) => {
+  //       console.log("Fail trying to upload the file");
+  //     }
+  //   );
+  // }
 
   // Add the new project to list of projects
   projects.projects = [...projects.projects, newAddedProject];
@@ -93,7 +91,7 @@ export const updateProjects = async (projectType, newProject) => {
  * @param {*} projectType
  * @param {*} projectId
  */
-export const deleteProject = async (projectType, projectId) => {
+export const deleteProject = async (projectType, projectsId) => {
   let newProjectType = projectType;
 
   // Get the data from database
@@ -101,12 +99,15 @@ export const deleteProject = async (projectType, projectId) => {
   projects = projects.data();
 
   // Filter the projects which have different ID from the given
-  projects.projects.forEach((item) => {
-    if (item.id === Number(projectId)) {
-      let index = projects.projects.indexOf(item);
-      projects.projects.splice(index, 1);
-    }
+  projectsId.forEach((projectId) => {
+    projects.projects = projects.projects.filter(
+      (item) => item.id !== Number(projectId)
+    );
   });
+
+  for (let i = 0; i < projects.projects.length; i++) {
+    projects.projects[i].id = i + 1;
+  }
 
   await setDoc(doc(db, "projects", newProjectType), projects);
 };

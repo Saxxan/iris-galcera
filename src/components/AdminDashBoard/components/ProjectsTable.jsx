@@ -9,6 +9,7 @@ import { deleteProject } from "../../../api/database";
 import { AddButton, DeleteButton } from "../../commons/Buttons/Buttons";
 import { EditProjectIconButton } from "../../commons/IconButtons/IconButtons";
 import AddProject from "./AddProject";
+import ConfirmDialog from "./ConfirmDialog";
 import EditProject from "./EditProject";
 
 // Styled components
@@ -54,6 +55,10 @@ function ProjectsTable(props) {
     setProjects(props.projects);
   }, [props.projects]);
 
+  useEffect(() => {
+    props.refresh(true);
+  }, [projects, selectedProjects, props]);
+
   /**
    * Function that handles check a project checkbox
    * @param {*} e
@@ -76,13 +81,19 @@ function ProjectsTable(props) {
   }
 
   /**
-   * Function that handles click on delete project button
+   * Function that handles delete selected projects
    */
-  function handleDeleteClick() {
-    selectedProjects.forEach((item) => {
-      deleteProject(props.type, item);
-    });
-    props.refresh(true);
+  function handleDeleteProjects() {
+    deleteProject(props.type, selectedProjects);
+    setSelectedProjects([]);
+  }
+
+  /**
+   * Function that handles delete selected projects
+   */
+  function handleDeleteButtonClick() {
+    setModalType("confirm");
+    handleToggleModalState();
   }
 
   /**
@@ -126,9 +137,18 @@ function ProjectsTable(props) {
           project={projectToEdit}
         />
       )}
+      {isModalVisible && modalType === "confirm" && (
+        <ConfirmDialog
+          handleClose={handleToggleModalState}
+          handleDelete={handleDeleteProjects}
+          projectsToDelete={selectedProjects}
+        />
+      )}
       <section style={{ margin: "24px 0 12px 0" }}>
         <AddButton onClick={handleClickAddButton}>Add project</AddButton>
-        <DeleteButton onClick={handleDeleteClick}>Delete project</DeleteButton>
+        <DeleteButton onClick={handleDeleteButtonClick}>
+          Delete project
+        </DeleteButton>
       </section>
       {projects ? (
         <Table>

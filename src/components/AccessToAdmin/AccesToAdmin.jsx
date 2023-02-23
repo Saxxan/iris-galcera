@@ -7,7 +7,6 @@ const LinkToAdmin = styled(Link)`
   position: absolute;
   bottom: 0;
   right: 0;
-  background: var(--secondary);
   cursor: pointer;
   text-decoration: none;
   padding: 6px;
