@@ -13,18 +13,27 @@ import { getCommercials, getFilmSeries, getTV } from "../../../api/database";
 export const Panel = styled.div`
   background-color: var(--grey);
   display: flex;
-  padding: 12px 24px;
 
   @media (min-width: 800px) {
-    margin: 0 5vw;
-    padding: 36px;
+    padding: 12px 36px;
   }
 `;
 
 const ProjectsList = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   width: 100%;
+  list-style: none;
+
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 6px;
+  }
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 12px;
+  }
 `;
 
 function ProjectsPanel(props) {

@@ -16,13 +16,16 @@ const Header = styled.header`
   left: 0;
   z-index: 5;
   display: flex;
-  width: 90vw;
+  width: 100vw;
   height: 10vh;
-  margin: 0 auto;
-  padding: 12px 6px;
+  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 800px) {
+    padding: 12px 48px;
+  }
 `;
 
 function Navigation(props) {

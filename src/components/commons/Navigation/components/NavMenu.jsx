@@ -30,16 +30,16 @@ const OptionLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   display: flex;
-  font-size: 35px;
-  font-weight: 00px;
-  color: var(--ice);
+  font-size: 30px;
+  font-weight: 500px;
+  color: inherit;
 
   &.active {
     color: var(--primary);
   }
 
   @media (min-width: 800px) {
-    font-size: clamp(15px, 1vw, 20px);
+    font-size: clamp(15px, 1vw, 17px);
     font-weight: 500;
   }
 `;

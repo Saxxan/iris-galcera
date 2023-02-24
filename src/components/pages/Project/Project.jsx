@@ -44,9 +44,7 @@ function Project(props) {
       {project && (
         <>
           <Navigation title={project.projectName} />
-          <Panel>
-            <ProjectTitleH1>{project.projectName.toUpperCase()}</ProjectTitleH1>
-          </Panel>
+          <Panel></Panel>
         </>
       )}
     </ProjectPage>

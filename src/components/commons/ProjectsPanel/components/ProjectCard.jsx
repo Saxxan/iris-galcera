@@ -4,27 +4,31 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// Components
-import { ProjectCardHeader } from "../../Typography/Typography";
-
 // Styled component
 const Card = styled.li`
-  display: flex;
-  flex-direction: column;
+  height: 250px;
+  background-color: var(--grey-placeholder);
+
+  @media (min-width: 800px) {
+    height: 300px;
+  }
+
+  & > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
-const CardContent = styled.article`
-  display: flex;
-  flex-wrap: wrap;
-`;
+// const CardContent = styled.article`
+//   display: flex;
+//   flex-wrap: wrap;
+// `;
 
 function ProjectCard(props) {
   return (
     <Card>
-      <Link to={props.project.path}>
-        <ProjectCardHeader>{props.project.projectName}</ProjectCardHeader>
-        <CardContent></CardContent>
-      </Link>
+      <Link to={props.project.path}>{props.project.projectName}</Link>
     </Card>
   );
 }

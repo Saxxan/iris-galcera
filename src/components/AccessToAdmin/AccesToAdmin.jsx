@@ -11,7 +11,7 @@ const LinkToAdmin = styled(Link)`
   text-decoration: none;
   padding: 6px;
   font-size: 13px;
-  color: var(--ice);
+  color: var(--grey-placeholder);
 `;
 
 function AccesToAdmin() {

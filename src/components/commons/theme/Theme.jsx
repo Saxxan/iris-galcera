@@ -12,12 +12,9 @@ export const ProjectPage = styled.div`
 export const HomePage = styled.div`
   width: 100vw;
   min-height: 100vh;
-  // background-color: var(--secondary);
-  background: url("fondo-home-example-1.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-color: var(--bg-cream);
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--grey-placeholder);
 `;
