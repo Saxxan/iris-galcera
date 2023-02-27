@@ -24,10 +24,17 @@ const TitleLayout = styled.main`
     width: 300px;
     height: 300px;
     margin-bottom: 12px;
-    background: url("fondo-home-1.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    border-radius: 6px;
+    // background: url("fondo-home-1.png");
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+    }
 
     @media (min-width: 500px) {
       width: 400px;
@@ -42,13 +49,17 @@ const TitleLayout = styled.main`
 `;
 
 function Home() {
+  const randomNumber = Math.floor(Math.random() * (15 - 1 + 1)) + 1;
+
   return (
     <HomePage>
       <Navigation title="" />
       <TitleLayout>
         <TitleH1>iris</TitleH1>
         <TitleH2>galcerà</TitleH2>
-        <div></div>
+        <div>
+          <img src={`fondo-home-${randomNumber}.webp`} alt="Ilustración home" />
+        </div>
         <SubTitleH3>ART DEPARTMENT</SubTitleH3>
       </TitleLayout>
       <AccesToAdmin />

@@ -7,7 +7,7 @@ export const TitleH1 = styled.h1`
   font-weight: 700;
   font-family: var(--font-italic);
   z-index: 1;
-  margin: -36px 0;
+  margin: -36px -60px -50px 0;
   color: var(--primary);
 `;
 

@@ -16,7 +16,8 @@ const Modal = styled.div`
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  background-color: var(--secondary);
+  background-color: var(--grey-placeholder);
+  color: var(--ice);
   z-index: 5;
 
   & > header {
