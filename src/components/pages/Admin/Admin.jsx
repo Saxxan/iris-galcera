@@ -19,6 +19,7 @@ const AdminTheme = styled.main`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 `;
 
 const LinkToHome = styled(Link)`

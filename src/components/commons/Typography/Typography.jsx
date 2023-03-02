@@ -16,11 +16,15 @@ export const TitleH2 = styled.h2`
   font-weight: 700;
   font-family: var(--font-italic);
   z-index: 1;
-  margin: -12px 0 -48px 0;
+  margin: -12px 0 -36px 0;
   color: var(--primary);
 
+  @media (min-width: 600px) {
+    margin: -24px 0 -48px 0;
+  }
+
   @media (min-width: 800px) {
-    margin: -24px 0 -60px 0;
+    margin: -24px 0 -55px 0;
   }
 `;
 
