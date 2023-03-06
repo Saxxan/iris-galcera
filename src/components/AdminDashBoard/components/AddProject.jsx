@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 // Database
-import { updateProjects } from "../../../api/database";
+import { updateProjects, uploadFiles } from "../../../api/database";
 
 // Components
 import { AcceptButton, CancelButton } from "../../commons/Buttons/Buttons";
@@ -10,7 +10,7 @@ import { ModalLayout } from "../../commons/Modal/Modal";
 
 function AddProject(props) {
   const [projectName, setProjectName] = useState("");
-  // const [projectImages, setProjectImages] = useState();
+  const [projectImages, setProjectImages] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -19,15 +19,19 @@ function AddProject(props) {
   function handleAddProject(e) {
     e.preventDefault();
 
-    let newProject = {
-      projectName: projectName,
-      //projectImages: projectImages,
-    };
-
-    let promise = updateProjects(props.type, newProject);
+    let promise = uploadFiles(projectImages);
 
     Promise.resolve(promise).then((res) => {
-      props.handleClose();
+      let newProject = {
+        projectName: projectName,
+        projectImages: projectImages,
+      };
+
+      let promise = updateProjects(props.type, newProject);
+
+      Promise.resolve(promise).then((res) => {
+        props.handleClose();
+      });
     });
   }
 
@@ -53,7 +57,7 @@ function AddProject(props) {
           data-multiple-caption="{count} files selected"
           multiple
           id="projectImages"
-          // onChange={(e) => setProjectImages(e.target.files)}
+          onChange={(e) => setProjectImages(e.target.files)}
         />
       </form>
       <footer>

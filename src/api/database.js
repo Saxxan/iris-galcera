@@ -1,6 +1,6 @@
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 //****************** Commercial projects *******************/
 
@@ -55,29 +55,6 @@ export const updateProjects = async (projectType, newProject) => {
   const path = `/${newProjectType}/${newAddedProject.projectName}`;
   newAddedProject.id = id;
   newAddedProject.path = path;
-  // newAddedProject.filesPaths = [];
-
-  // Managing files
-  // for (let i = 0; i < newAddedProject.projectImages.length; i++) {
-  //   let fileToUpload = newAddedProject.projectImages.item(i);
-
-  //   // Create file storage reference
-  //   let storageRef = ref(storage, `files/${fileToUpload.name}`);
-  //   const uploadTask = uploadBytesResumable(storageRef, fileToUpload);
-
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       console.log("File uploaded succesfully");
-  //       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //         newAddedProject.filesPaths.concat(downloadURL);
-  //       });
-  //     },
-  //     (error) => {
-  //       console.log("Fail trying to upload the file");
-  //     }
-  //   );
-  // }
 
   // Add the new project to list of projects
   projects.projects = [...projects.projects, newAddedProject];
@@ -110,4 +87,24 @@ export const deleteProject = async (projectType, projectsId) => {
   }
 
   await setDoc(doc(db, "projects", newProjectType), projects);
+};
+
+/**
+ * Function to upload files and return references
+ * @param {*} files
+ * @returns
+ */
+export const uploadFiles = async (files) => {
+  let filesRef = [];
+
+  // Managing files
+  for (let i = 0; i < files.length; i++) {
+    let fileToUpload = files.item(i);
+
+    // Create file storage reference
+    let storageRef = ref(storage, fileToUpload.name);
+    filesRef = [...filesRef, storageRef];
+    uploadBytes(storageRef, fileToUpload);
+  }
+  return filesRef;
 };

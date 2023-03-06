@@ -20,11 +20,11 @@ export const TitleH2 = styled.h2`
   color: var(--primary);
 
   @media (min-width: 600px) {
-    margin: -24px 0 -48px 0;
+    margin: -24px 0 -40px 0;
   }
 
   @media (min-width: 800px) {
-    margin: -24px 0 -55px 0;
+    margin: -24px 0 -50px 0;
   }
 `;
 
