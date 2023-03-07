@@ -55,6 +55,7 @@ function ProjectsPanel(props) {
 
     Promise.resolve(promise).then((res) => {
       let currentProjects = res;
+      // console.log(res);
       setProjectsOnPage(currentProjects);
     });
   }, [props.type]);

@@ -11,6 +11,7 @@ import { ModalLayout } from "../../commons/Modal/Modal";
 function AddProject(props) {
   const [projectName, setProjectName] = useState("");
   const [projectImages, setProjectImages] = useState();
+  const [files, setFiles] = useState([]);
 
   /**
    * Function that handles submit form for add a new project
@@ -24,7 +25,7 @@ function AddProject(props) {
     Promise.resolve(promise).then((res) => {
       let newProject = {
         projectName: projectName,
-        projectImages: projectImages,
+        files: files,
       };
 
       let promise = updateProjects(props.type, newProject);
@@ -33,6 +34,22 @@ function AddProject(props) {
         props.handleClose();
       });
     });
+  }
+
+  /**
+   * Function that handles the files attached to get the files and their names
+   * @param {*} inputFiles
+   */
+  function handleFilesInputChange(inputFiles) {
+    let files = [];
+
+    for (let i = 0; i < inputFiles.length; i++) {
+      let newFile = { fileName: inputFiles[i].name, url: "" };
+      files = [...files, newFile];
+    }
+
+    setFiles(files);
+    setProjectImages(inputFiles);
   }
 
   return (
@@ -57,7 +74,7 @@ function AddProject(props) {
           data-multiple-caption="{count} files selected"
           multiple
           id="projectImages"
-          onChange={(e) => setProjectImages(e.target.files)}
+          onChange={(e) => handleFilesInputChange(e.target.files)}
         />
       </form>
       <footer>

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // Styled component
 const Card = styled.li`
   height: 250px;
-  background-color: var(--grey-placeholder);
+  // background-color: var(--grey-placeholder);
 
   @media (min-width: 800px) {
     height: 300px;
@@ -20,15 +20,11 @@ const Card = styled.li`
   }
 `;
 
-// const CardContent = styled.article`
-//   display: flex;
-//   flex-wrap: wrap;
-// `;
-
 function ProjectCard(props) {
   return (
     <Card>
       <Link to={props.project.path}>{props.project.projectName}</Link>
+      {/* {props.project.files && <img src={props.project.files}></img>} */}
     </Card>
   );
 }

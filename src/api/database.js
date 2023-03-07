@@ -2,6 +2,38 @@ import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
+/**
+ * Function to upload files and return references
+ * @param {*} files
+ * @returns
+ */
+export const uploadFiles = async (files) => {
+  let filesRef = [];
+
+  // Managing files
+  for (let i = 0; i < files.length; i++) {
+    let fileToUpload = files.item(i);
+
+    // Create file storage reference
+    let storageRef = ref(storage, fileToUpload.name);
+    filesRef = [...filesRef, storageRef];
+    await uploadBytes(storageRef, fileToUpload);
+  }
+  return filesRef;
+};
+
+/**
+ * Function to download files
+ * @param {*} fileName
+ */
+export const downloadFiles = async (fileName) => {
+  const downloadRef = ref(storage, fileName);
+
+  Promise.resolve(getDownloadURL(downloadRef)).then((url) => {
+    return url;
+  });
+};
+
 //****************** Commercial projects *******************/
 
 /**
@@ -21,7 +53,14 @@ export const getCommercials = async () => {
  */
 export const getFilmSeries = async () => {
   let projects = await getDoc(doc(db, "projects", "filmseries"));
-  return projects.data();
+  //let url = await getDownloadURL(ref(storage, "example1.webp"));
+  projects = projects.data();
+  projects.projects.forEach((project) => {
+    project.files.forEach((file) => {
+      file.url = downloadFiles(file.fileName);
+    });
+  });
+  return projects;
 };
 
 //******************  TV series projects ***********************/
@@ -87,24 +126,4 @@ export const deleteProject = async (projectType, projectsId) => {
   }
 
   await setDoc(doc(db, "projects", newProjectType), projects);
-};
-
-/**
- * Function to upload files and return references
- * @param {*} files
- * @returns
- */
-export const uploadFiles = async (files) => {
-  let filesRef = [];
-
-  // Managing files
-  for (let i = 0; i < files.length; i++) {
-    let fileToUpload = files.item(i);
-
-    // Create file storage reference
-    let storageRef = ref(storage, fileToUpload.name);
-    filesRef = [...filesRef, storageRef];
-    uploadBytes(storageRef, fileToUpload);
-  }
-  return filesRef;
 };
