@@ -12,6 +12,7 @@ function AddProject(props) {
   const [projectName, setProjectName] = useState("");
   const [projectImages, setProjectImages] = useState();
   const [files, setFiles] = useState([]);
+  const [projectDescription, setProjectDescription] = useState("");
 
   /**
    * Function that handles submit form for add a new project
@@ -25,6 +26,7 @@ function AddProject(props) {
     Promise.resolve(promise).then((res) => {
       let newProject = {
         projectName: projectName,
+        projectDescription: projectDescription,
         files: files,
       };
 
@@ -65,7 +67,7 @@ function AddProject(props) {
         <label htmlFor="projectDescription">Description</label>
         <textarea
           id="projectDescription"
-          // onChange={(e) => setProjectDescription(e.target.value)}
+          onChange={(e) => setProjectDescription(e.target.value)}
         />
         <label htmlFor="projectImages">Project images</label>
         <input

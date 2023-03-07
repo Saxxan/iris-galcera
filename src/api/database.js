@@ -23,15 +23,13 @@ export const uploadFiles = async (files) => {
 };
 
 /**
- * Function to download files
+ * Function to get a download url for the file
  * @param {*} fileName
+ * @returns
  */
 export const downloadFiles = async (fileName) => {
-  const downloadRef = ref(storage, fileName);
-
-  Promise.resolve(getDownloadURL(downloadRef)).then((url) => {
-    return url;
-  });
+  let downloadURL = await getDownloadURL(ref(storage, fileName));
+  return downloadURL;
 };
 
 //****************** Commercial projects *******************/
@@ -53,14 +51,7 @@ export const getCommercials = async () => {
  */
 export const getFilmSeries = async () => {
   let projects = await getDoc(doc(db, "projects", "filmseries"));
-  //let url = await getDownloadURL(ref(storage, "example1.webp"));
-  projects = projects.data();
-  projects.projects.forEach((project) => {
-    project.files.forEach((file) => {
-      file.url = downloadFiles(file.fileName);
-    });
-  });
-  return projects;
+  return projects.data();
 };
 
 //******************  TV series projects ***********************/
