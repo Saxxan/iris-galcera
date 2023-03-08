@@ -1,6 +1,11 @@
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 
 /**
  * Function to upload files and return references
@@ -30,6 +35,14 @@ export const uploadFiles = async (files) => {
 export const downloadFiles = async (fileName) => {
   let downloadURL = await getDownloadURL(ref(storage, fileName));
   return downloadURL;
+};
+
+/**
+ * Function to delete a file in the database
+ * @param {*} fileName
+ */
+export const deleteFiles = async (fileName) => {
+  await deleteObject(ref(storage, fileName));
 };
 
 //****************** Commercial projects *******************/
@@ -105,11 +118,26 @@ export const deleteProject = async (projectType, projectsId) => {
   let projects = await getDoc(doc(db, "projects", newProjectType));
   projects = projects.data();
 
+  let projectsToDelete = [];
+
   // Filter the projects which have different ID from the given
   projectsId.forEach((projectId) => {
+    projects.projects.forEach((project) => {
+      if (project.id === Number(projectId)) {
+        projectsToDelete = [...projectsToDelete, project];
+      }
+    });
+
     projects.projects = projects.projects.filter(
       (item) => item.id !== Number(projectId)
     );
+  });
+
+  // Delete files of each deleted project
+  projectsToDelete.forEach((projectToDelete) => {
+    projectToDelete.files.forEach((file) => {
+      deleteFiles(file.fileName);
+    });
   });
 
   for (let i = 0; i < projects.projects.length; i++) {
