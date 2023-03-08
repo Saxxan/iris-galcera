@@ -83,7 +83,7 @@ export const getTV = async () => {
  * @param {*} projectType
  * @param {*} newProject
  */
-export const updateProjects = async (projectType, newProject) => {
+export const addProjects = async (projectType, newProject) => {
   let newProjectType = projectType;
 
   // Get the data from database
@@ -107,6 +107,37 @@ export const updateProjects = async (projectType, newProject) => {
 };
 
 /**
+ * Function to update a existing project to the database
+ * @param {*} projectType
+ * @param {*} newProject
+ */
+export const updateProjects = async (projectType, newProject) => {
+  let newProjectType = projectType;
+
+  // Get the data from database
+  let projects = await getDoc(doc(db, "projects", newProjectType));
+  projects = projects.data();
+
+  // Get the updated project
+  let newUpdatedProject = newProject;
+
+  console.log(newUpdatedProject);
+  console.log(projects);
+
+  // // Create new project configurations
+  // const id = projects.projects.length + 1;
+  // const path = `/${newProjectType}/${newAddedProject.projectName}`;
+  // newAddedProject.id = id;
+  // newAddedProject.path = path;
+
+  // // Add the new project to list of projects
+  // projects.projects = [...projects.projects, newAddedProject];
+
+  // Send updated projects to database
+  // await setDoc(doc(db, "projects", newProjectType), projects);
+};
+
+/**
  * Function to delete a project on database
  * @param {*} projectType
  * @param {*} projectId
@@ -120,14 +151,15 @@ export const deleteProject = async (projectType, projectsId) => {
 
   let projectsToDelete = [];
 
-  // Filter the projects which have different ID from the given
   projectsId.forEach((projectId) => {
+    // Get the projects to delete
     projects.projects.forEach((project) => {
       if (project.id === Number(projectId)) {
         projectsToDelete = [...projectsToDelete, project];
       }
     });
 
+    // Filter the projects which have different ID from the given
     projects.projects = projects.projects.filter(
       (item) => item.id !== Number(projectId)
     );
@@ -135,14 +167,18 @@ export const deleteProject = async (projectType, projectsId) => {
 
   // Delete files of each deleted project
   projectsToDelete.forEach((projectToDelete) => {
-    projectToDelete.files.forEach((file) => {
-      deleteFiles(file.fileName);
-    });
+    if (projectToDelete["files"]) {
+      projectToDelete.files.forEach((file) => {
+        deleteFiles(file.fileName);
+      });
+    }
   });
 
+  // Modify the projects ID
   for (let i = 0; i < projects.projects.length; i++) {
     projects.projects[i].id = i + 1;
   }
 
+  // Send the projects again to the database
   await setDoc(doc(db, "projects", newProjectType), projects);
 };

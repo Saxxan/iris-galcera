@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 // Database
-import { updateProjects, uploadFiles } from "../../../api/database";
+import { addProjects, uploadFiles } from "../../../api/database";
 
 // Components
 import { AcceptButton, CancelButton } from "../../commons/Buttons/Buttons";
@@ -13,6 +13,8 @@ function AddProject(props) {
   const [projectImages, setProjectImages] = useState();
   const [files, setFiles] = useState([]);
   const [projectDescription, setProjectDescription] = useState("");
+  const [projectThumbnail, setProjectThumbnail] = useState();
+  const [thumbnail, setThumbnail] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -21,21 +23,31 @@ function AddProject(props) {
   function handleAddProject(e) {
     e.preventDefault();
 
-    let promise = uploadFiles(projectImages);
+    uploadFiles(projectImages);
+    uploadFiles(thumbnail);
+
+    let newProject = {
+      projectName: projectName,
+      projectDescription: projectDescription,
+      files: files,
+      thumbnail: projectThumbnail,
+    };
+
+    let promise = addProjects(props.type, newProject);
 
     Promise.resolve(promise).then((res) => {
-      let newProject = {
-        projectName: projectName,
-        projectDescription: projectDescription,
-        files: files,
-      };
-
-      let promise = updateProjects(props.type, newProject);
-
-      Promise.resolve(promise).then((res) => {
-        props.handleClose();
-      });
+      props.handleClose();
     });
+  }
+
+  /**
+   * Function that handles thumbnail attached to the add project form
+   * @param {*} inputThumbnail
+   */
+  function handleThumbnailInputChange(inputThumbnail) {
+    setThumbnail(inputThumbnail);
+    let thumbnail = { fileName: inputThumbnail[0].name, url: "" };
+    setProjectThumbnail(thumbnail);
   }
 
   /**
@@ -68,6 +80,13 @@ function AddProject(props) {
         <textarea
           id="projectDescription"
           onChange={(e) => setProjectDescription(e.target.value)}
+        />
+        <label htmlFor="projectThumbnail">Project main image</label>
+        <input
+          type="file"
+          name="thumbnail"
+          id="projectThumbnail"
+          onChange={(e) => handleThumbnailInputChange(e.target.files)}
         />
         <label htmlFor="projectImages">Project images</label>
         <input
