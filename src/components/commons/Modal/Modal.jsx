@@ -15,6 +15,14 @@ export const ModalLayout = styled.div`
   gap: 20px;
   align-items: center;
 
+  & > * {
+    width: 95%;
+  }
+
+  & > h2 {
+    text-align: center;
+  }
+
   & > form {
     margin: 12px 0;
     display: flex;

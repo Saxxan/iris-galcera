@@ -1,9 +1,10 @@
+// Dependencies
 import React, { useState } from "react";
 import styled from "styled-components";
-import DashboarMain from "./components/DashboarMain";
 
 // Components
 import NavAside from "./components/NavAside";
+import DashboardMain from "./components/DashboardMain/DashboardMain";
 
 // Styled Components
 const Dashboard = styled.article`
@@ -28,7 +29,7 @@ function AdminDashboard() {
   return (
     <Dashboard>
       <NavAside changeProjectType={changeProjectType} />
-      <DashboarMain type={projectsType} />
+      <DashboardMain type={projectsType} />
     </Dashboard>
   );
 }
