@@ -13,7 +13,7 @@ import {
 import { EditProjectIconButton } from "../../../../../commons/IconButtons/IconButtons";
 import AddProject from "./components/AddProject";
 import ConfirmDialog from "./components/ConfirmDialog";
-import EditProject from "./components/EditProject";
+import EditProject from "./components/EditProject/EditProject";
 
 // Styled components
 const Table = styled.table`

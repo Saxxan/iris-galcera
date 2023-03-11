@@ -109,32 +109,29 @@ export const addProjects = async (projectType, newProject) => {
 /**
  * Function to update a existing project to the database
  * @param {*} projectType
- * @param {*} newProject
+ * @param {*} updatedProject
  */
-export const updateProjects = async (projectType, newProject) => {
-  let newProjectType = projectType;
+export const updateProjects = async (projectType, updatedProject) => {
+  let updatedProjectType = projectType;
 
   // Get the data from database
-  let projects = await getDoc(doc(db, "projects", newProjectType));
+  let projects = await getDoc(doc(db, "projects", updatedProjectType));
   projects = projects.data();
 
   // Get the updated project
-  let newUpdatedProject = newProject;
+  let newUpdatedProject = updatedProject;
 
-  console.log(newUpdatedProject);
-  console.log(projects);
+  newUpdatedProject.path = `/${updatedProjectType}/${newUpdatedProject.projectName}`;
 
-  // // Create new project configurations
-  // const id = projects.projects.length + 1;
-  // const path = `/${newProjectType}/${newAddedProject.projectName}`;
-  // newAddedProject.id = id;
-  // newAddedProject.path = path;
+  // Update the project in the projects list
+  projects.projects = projects.projects.filter(
+    (item) => item.id !== newUpdatedProject.id
+  );
 
-  // // Add the new project to list of projects
-  // projects.projects = [...projects.projects, newAddedProject];
+  projects.projects = [...projects.projects, newUpdatedProject];
 
   // Send updated projects to database
-  // await setDoc(doc(db, "projects", newProjectType), projects);
+  await setDoc(doc(db, "projects", updatedProjectType), projects);
 };
 
 /**

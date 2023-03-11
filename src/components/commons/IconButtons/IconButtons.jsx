@@ -98,9 +98,28 @@ function EditProjectIconButton(props) {
   );
 }
 
+function DeleteImgIconButton() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="20" height="20" rx="10" fill="var(--primary)" />
+      <path
+        d="M11.216 10.0003L15.8327 14.617V15.8337H14.616L9.99935 11.217L5.38268 15.8337H4.16602V14.617L8.78268 10.0003L4.16602 5.38366V4.16699H5.38268L9.99935 8.78366L14.616 4.16699H15.8327V5.38366L11.216 10.0003Z"
+        fill="var(--ice)"
+      />
+    </svg>
+  );
+}
+
 export {
   BurguerIconButton,
   CloseIconButton,
   ArrowIconButton,
   EditProjectIconButton,
+  DeleteImgIconButton,
 };

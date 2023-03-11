@@ -14,7 +14,7 @@ const DeleteProjectList = styled.ul`
 `;
 
 function ConfirmDialog(props) {
-  const confirmDeleteButtoClick = () => {
+  const confirmDeleteButtonClick = () => {
     props.handleDelete();
     props.handleClose();
   };
@@ -30,7 +30,7 @@ function ConfirmDialog(props) {
       </DeleteProjectList>
       <footer>
         <CancelButton onClick={props.handleClose}>Cancelar</CancelButton>
-        <AcceptButton onClick={confirmDeleteButtoClick}>Borrar</AcceptButton>
+        <AcceptButton onClick={confirmDeleteButtonClick}>Borrar</AcceptButton>
       </footer>
     </ModalLayout>
   );
