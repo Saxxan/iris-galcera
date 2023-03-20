@@ -16,7 +16,7 @@ const Header = styled.header`
   left: 0;
   z-index: 5;
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   padding: 12px 24px;
   display: flex;

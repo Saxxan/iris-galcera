@@ -97,7 +97,7 @@ export const addProjects = async (projectType, newProject) => {
   const id = projects.projects.length + 1;
   const path = `/${newProjectType}/${newAddedProject.projectName}`;
   newAddedProject.id = id;
-  newAddedProject.path = path;
+  newAddedProject.path = path.replace(" ", "-");
 
   // Add the new project to list of projects
   projects.projects = [...projects.projects, newAddedProject];
@@ -121,7 +121,8 @@ export const updateProjects = async (projectType, updatedProject) => {
   // Get the updated project
   let newUpdatedProject = updatedProject;
 
-  newUpdatedProject.path = `/${updatedProjectType}/${newUpdatedProject.projectName}`;
+  let updatedPath = `/${updatedProjectType}/${newUpdatedProject.projectName}`;
+  newUpdatedProject.path = updatedPath.replace(" ", "-");
 
   // Update the project in the projects list
   projects.projects = projects.projects.filter(
@@ -168,6 +169,9 @@ export const deleteProject = async (projectType, projectsId) => {
       projectToDelete.files.forEach((file) => {
         deleteFiles(file.fileName);
       });
+    }
+    if (projectToDelete["thumbnail"]) {
+      deleteFiles(projectToDelete.thumbnail.fileName);
     }
   });
 

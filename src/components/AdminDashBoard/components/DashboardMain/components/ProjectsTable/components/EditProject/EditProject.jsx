@@ -94,7 +94,7 @@ function EditProject(props) {
       }
     });
 
-    if (projectThumbnail.fileName !== "") {
+    if (updateThumbnail.fileName !== "") {
       let promise = downloadFiles(updateThumbnail.fileName);
       Promise.resolve(promise).then((res) => {
         updateThumbnail.url = res;

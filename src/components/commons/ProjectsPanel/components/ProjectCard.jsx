@@ -32,7 +32,6 @@ function ProjectCard({ project }) {
     let promise = downloadFiles(updateProject.thumbnail.fileName);
     Promise.resolve(promise).then((res) => {
       updateProject.thumbnail.url = res;
-
       setCurrentProject(updateProject);
     });
   }, [project]);
