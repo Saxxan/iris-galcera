@@ -93,6 +93,17 @@ export const addProjects = async (projectType, newProject) => {
   // Get the new project to be added
   let newAddedProject = newProject;
 
+  // Check if some fields are undefined
+  if (newAddedProject.thumbnailImg === undefined) {
+    newAddedProject.thumbnailImg = {
+      fileName: null,
+      url: null,
+    };
+  }
+  if (newAddedProject.thumbnailVideo === undefined) {
+    newAddedProject.thumbnailVideo = null;
+  }
+
   // Create new project configurations
   const id = projects.projects.length + 1;
   const path = `/${newProjectType}/${newAddedProject.projectName}`;

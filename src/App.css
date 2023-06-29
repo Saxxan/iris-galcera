@@ -30,4 +30,5 @@
 body {
     font-family: var(--font-body);
     color: var(--ice);
+    font-display: swap;
 }

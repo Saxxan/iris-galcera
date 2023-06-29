@@ -16,8 +16,9 @@ function AddProject(props) {
   const [projectImages, setProjectImages] = useState();
   const [files, setFiles] = useState([]);
   const [projectDescription, setProjectDescription] = useState("");
-  const [projectThumbnail, setProjectThumbnail] = useState();
-  const [thumbnail, setThumbnail] = useState();
+  const [projectThumbnailImg, setProjectThumbnailImg] = useState();
+  const [thumbnailImg, setThumbnailImg] = useState();
+  const [thumbnailVideo, setThumbnailVideo] = useState();
 
   /**
    * Function that handles submit form for add a new project
@@ -26,14 +27,19 @@ function AddProject(props) {
   function handleAddProject(e) {
     e.preventDefault();
 
-    uploadFiles(projectImages);
-    uploadFiles(thumbnail);
+    if (projectImages) {
+      uploadFiles(projectImages);
+    }
+    if (thumbnailImg) {
+      uploadFiles(thumbnailImg);
+    }
 
     let newProject = {
       projectName: projectName,
       projectDescription: projectDescription,
       files: files,
-      thumbnail: projectThumbnail,
+      thumbnailImg: projectThumbnailImg,
+      thumbnailVideo: thumbnailVideo,
     };
 
     let promise = addProjects(props.type, newProject);
@@ -44,13 +50,13 @@ function AddProject(props) {
   }
 
   /**
-   * Function that handles thumbnail attached to the add project form
-   * @param {*} inputThumbnail
+   * Function that handles thumbnail img attached to the add project form
+   * @param {*} inputThumbnailImg
    */
-  function handleThumbnailInputChange(inputThumbnail) {
-    setThumbnail(inputThumbnail);
-    let thumbnail = { fileName: inputThumbnail[0].name, url: "" };
-    setProjectThumbnail(thumbnail);
+  function handleThumbnailImgInputChange(inputThumbnailImg) {
+    setThumbnailImg(inputThumbnailImg);
+    let thumbnail = { fileName: inputThumbnailImg[0].name, url: "" };
+    setProjectThumbnailImg(thumbnail);
   }
 
   /**
@@ -84,13 +90,29 @@ function AddProject(props) {
           id="projectDescription"
           onChange={(e) => setProjectDescription(e.target.value)}
         />
-        <label htmlFor="projectThumbnail">Project main image</label>
-        <input
-          type="file"
-          name="thumbnail"
-          id="projectThumbnail"
-          onChange={(e) => handleThumbnailInputChange(e.target.files)}
-        />
+        <section style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <section>
+            <label htmlFor="projectThumbnailImg">Project main image</label>
+            <input
+              type="file"
+              name="thumbnail-img"
+              id="projectThumbnailImg"
+              onChange={(e) => handleThumbnailImgInputChange(e.target.files)}
+            />
+          </section>
+          <p>O</p>
+          <section>
+            <label htmlFor="projectThumbnailVideo">
+              URL project main video
+            </label>
+            <input
+              type="text"
+              name="thumbnail-video"
+              id="projectThumbnailVideo"
+              onChange={(e) => setThumbnailVideo(e.target.value)}
+            />
+          </section>
+        </section>
         <label htmlFor="projectImages">Project images</label>
         <input
           type="file"

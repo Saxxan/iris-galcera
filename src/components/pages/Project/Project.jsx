@@ -59,9 +59,11 @@ function Project(props) {
     }
 
     Promise.resolve(promise).then((res) => {
+      console.log(location.pathname);
       let currentProject = res.projects.filter(
         (item) => item.path === location.pathname
       );
+      console.log(currentProject[0].pathname);
       setProject(currentProject[0]);
     });
   }, [location, setProject]);
@@ -114,15 +116,15 @@ function Project(props) {
           <ProjectMain>
             {projectFiles && (
               <>
-                {projectFiles.thumbnail.fileName.includes(".mp4") ? (
+                {projectFiles.thumbnailVideo !== "" ? (
                   <video
-                    src={project.thumbnail.url}
+                    src={project.thumbnailVideo}
                     alt="Vídeo principal del proyecto"
                     autoPlay
                   />
                 ) : (
                   <img
-                    src={project.thumbnail.url}
+                    src={project.thumbnailImg.url}
                     alt="Imagen principal del proyecto"
                   />
                 )}

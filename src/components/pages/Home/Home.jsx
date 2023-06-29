@@ -25,10 +25,6 @@ const TitleLayout = styled.main`
     height: 300px;
     margin-bottom: 12px;
     border-radius: 6px;
-    // background: url("fondo-home-1.png");
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // background-size: cover;
 
     & > img {
       width: 100%;

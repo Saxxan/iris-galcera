@@ -29,9 +29,9 @@ function ProjectCard({ project }) {
 
   useEffect(() => {
     let updateProject = project;
-    let promise = downloadFiles(updateProject.thumbnail.fileName);
+    let promise = downloadFiles(updateProject.thumbnailImg.fileName);
     Promise.resolve(promise).then((res) => {
-      updateProject.thumbnail.url = res;
+      updateProject.thumbnailImg.url = res;
       setCurrentProject(updateProject);
     });
   }, [project]);
@@ -41,8 +41,8 @@ function ProjectCard({ project }) {
       <Card>
         <Link to={currentProject.path}>
           <img
-            src={currentProject.thumbnail.url}
-            alt={currentProject.thumbnail.fileName}
+            src={currentProject.thumbnailImg.url}
+            alt={currentProject.thumbnailImg.fileName}
           />
         </Link>
       </Card>
