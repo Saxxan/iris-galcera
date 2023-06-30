@@ -28,18 +28,30 @@ const ProjectMain = styled.main`
     width: 100%;
   }
 
-  & > p {
-    padding: 36px 0;
+  & > section {
+    width: 100%;
+    padding: 36px 24px;
+
+    & > p {
+      margin: 5px 0;
+      font-size: clamp(1rem, 0.4643rem + 1.4286vw, 1.25rem);
+    }
   }
 
   @media (min-width: 800px) {
     padding: 12px 48px;
+
+    & > section {
+      width: 100%;
+      padding: 36px 0;
+    }
   }
 `;
 
 function Project(props) {
   const [project, setProject] = useState();
   const [projectFiles, setProjectFiles] = useState();
+  const [descriptionArray, setDescriptionArray] = useState([]);
   const location = useLocation();
 
   /**
@@ -59,11 +71,9 @@ function Project(props) {
     }
 
     Promise.resolve(promise).then((res) => {
-      console.log(location.pathname);
       let currentProject = res.projects.filter(
         (item) => item.path === location.pathname
       );
-      console.log(currentProject[0].pathname);
       setProject(currentProject[0]);
     });
   }, [location, setProject]);
@@ -75,7 +85,7 @@ function Project(props) {
     if (project && !projectFiles) {
       let updateFiles = {
         files: project.files,
-        thumbnail: project.thumbnail,
+        thumbnail: project.thumbnailImg,
       };
 
       let promises = [];
@@ -104,9 +114,15 @@ function Project(props) {
     }
   }, [project, projectFiles]);
 
+  /**
+   * Effect hook to transform the description string to an array of strings
+   */
   useEffect(() => {
-    console.log(projectFiles);
-  }, [projectFiles]);
+    if (project) {
+      const descriptionArray = project.projectDescription.split(/[.]+/);
+      setDescriptionArray(descriptionArray);
+    }
+  }, [project]);
 
   return (
     <ProjectPage>
@@ -114,26 +130,31 @@ function Project(props) {
         <>
           <Navigation title={project.projectName} />
           <ProjectMain>
-            {projectFiles && (
-              <>
-                {projectFiles.thumbnailVideo !== "" ? (
-                  <video
-                    src={project.thumbnailVideo}
-                    alt="Vídeo principal del proyecto"
-                    autoPlay
-                  />
-                ) : (
-                  <img
-                    src={project.thumbnailImg.url}
-                    alt="Imagen principal del proyecto"
-                  />
-                )}
-              </>
+            {project.thumbnailVideo !== null ? (
+              <video
+                src={project.thumbnailVideo}
+                alt="Vídeo principal del proyecto"
+                autoPlay
+              />
+            ) : (
+              <img
+                src={project.thumbnailImg.url}
+                alt="Imagen principal del proyecto"
+              />
             )}
-            <p>{project.projectDescription}</p>
+            <section>
+              {descriptionArray.map((item) => (
+                <p>{item}</p>
+              ))}
+            </section>
             {projectFiles &&
               projectFiles.files.map((file) => (
-                <img src={file.url} alt={file.fileName} />
+                <img
+                  key={file.fileName}
+                  src={file.url}
+                  alt={file.fileName}
+                  loading="lazy"
+                />
               ))}
           </ProjectMain>
         </>

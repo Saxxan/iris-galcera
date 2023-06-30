@@ -34,6 +34,10 @@ const OptionLink = styled(Link)`
   font-weight: 500px;
   color: inherit;
 
+  &:hover {
+    color: var(--primary-tone-2);
+  }
+
   &.active {
     color: var(--primary);
   }

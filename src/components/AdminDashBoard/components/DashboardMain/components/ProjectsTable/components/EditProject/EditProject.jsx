@@ -70,19 +70,23 @@ function EditProject(props) {
     props.project.projectDescription
   );
   const [files, setFiles] = useState(props.project.files);
-  const [projectThumbnail, setProjectThumbnail] = useState(
-    props.project.thumbnail
+  const [projectThumbnailImg, setProjectThumbnailImg] = useState(
+    props.project.thumbnailImg
+  );
+  const [projectThumbnailVideo, setProjectThumbnailVideo] = useState(
+    props.project.thumbnailVideo
   );
   const [projectImages, setProjectImages] = useState();
-  const [thumbnail, setThumbnail] = useState();
+  const [thumbnailImg, setThumbnailImg] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [deleteFile, setDeleteFile] = useState("");
+  const [thumbnailVideo, setThumbnailVideo] = useState();
 
   /**
    * Effect hook to get the files of the project from the database
    */
   useEffect(() => {
-    let updateThumbnail = projectThumbnail;
+    let updateThumbnail = projectThumbnailImg;
     let updateFiles = files;
 
     updateFiles.forEach((file) => {
@@ -100,7 +104,7 @@ function EditProject(props) {
         updateThumbnail.url = res;
       });
     }
-  }, [files, projectThumbnail]);
+  }, [files, projectThumbnailImg]);
 
   /**
    * Function that handles submit form for edit a existing project
@@ -113,8 +117,8 @@ function EditProject(props) {
       uploadFiles(projectImages);
     }
 
-    if (thumbnail) {
-      uploadFiles(thumbnail);
+    if (thumbnailImg) {
+      uploadFiles(thumbnailImg);
     }
 
     let updateProject = {
@@ -122,7 +126,8 @@ function EditProject(props) {
       projectName: projectName,
       projectDescription: projectDescription,
       files: files,
-      thumbnail: projectThumbnail,
+      thumbnailImg: projectThumbnailImg,
+      thumbnailVideo: thumbnailVideo,
     };
 
     let promise = updateProjects(props.type, updateProject);
@@ -134,12 +139,12 @@ function EditProject(props) {
 
   /**
    * Function that handles thumbnail attached to the add project form
-   * @param {*} inputThumbnail
+   * @param {*} inputThumbnailImg
    */
-  function handleThumbnailInputChange(inputThumbnail) {
-    setThumbnail(inputThumbnail);
-    let thumbnail = { fileName: inputThumbnail[0].name, url: "" };
-    setProjectThumbnail(thumbnail);
+  function handleThumbnailImgInputChange(inputThumbnailImg) {
+    setThumbnailImg(inputThumbnailImg);
+    let thumbnailImg = { fileName: inputThumbnailImg[0].name, url: "" };
+    setProjectThumbnailImg(thumbnailImg);
   }
 
   /**
@@ -169,7 +174,7 @@ function EditProject(props) {
       let updateFiles = files.filter((item) => item.fileName !== deleteFile);
       setFiles(updateFiles);
     } else {
-      setProjectThumbnail({ fileName: "", url: "" });
+      setProjectThumbnailImg({ fileName: "", url: "" });
     }
 
     deleteFiles(deleteFile);
@@ -216,28 +221,52 @@ function EditProject(props) {
             id="projectDescription"
             value={projectDescription}
             onChange={(e) => setProjectDescription(e.target.value)}
+            style={{ height: "100px" }}
           />
-          <label htmlFor="projectThumbnail">Project main image</label>
-          <section></section>
-          {projectThumbnail.fileName !== "" ? (
-            <Frame>
-              <DeleteImgBtn
-                onClick={(e) =>
-                  handleDeleteButtonClick(e, projectThumbnail.fileName)
-                }
-              >
-                <DeleteImgIconButton />
-              </DeleteImgBtn>
-              <img src={projectThumbnail.url} alt={projectThumbnail.fileName} />
-            </Frame>
-          ) : (
-            <input
-              type="file"
-              name="thumbnail"
-              id="projectThumbnail"
-              onChange={(e) => handleThumbnailInputChange(e.target.files)}
-            />
-          )}
+          <section
+            style={{ display: "flex", alignItems: "center", gap: "24px" }}
+          >
+            <section>
+              <label htmlFor="projectThumbnail">Project main image</label>
+              <section></section>
+              {projectThumbnailImg.fileName !== "" ? (
+                <Frame>
+                  <DeleteImgBtn
+                    onClick={(e) =>
+                      handleDeleteButtonClick(e, projectThumbnailImg.fileName)
+                    }
+                  >
+                    <DeleteImgIconButton />
+                  </DeleteImgBtn>
+                  <img
+                    src={projectThumbnailImg.url}
+                    alt={projectThumbnailImg.fileName}
+                  />
+                </Frame>
+              ) : (
+                <input
+                  type="file"
+                  name="thumbnail"
+                  id="projectThumbnailImg"
+                  onChange={(e) =>
+                    handleThumbnailImgInputChange(e.target.files)
+                  }
+                />
+              )}
+            </section>
+            <p>O</p>
+            <section>
+              <label htmlFor="projectThumbnailVideo">
+                URL project main video
+              </label>
+              <input
+                type="text"
+                name="thumbnail-video"
+                id="projectThumbnailVideo"
+                onChange={(e) => setThumbnailVideo(e.target.value)}
+              />
+            </section>
+          </section>
           <label htmlFor="projectImages">Project images</label>
           {files && (
             <ProjectImagesContainer>

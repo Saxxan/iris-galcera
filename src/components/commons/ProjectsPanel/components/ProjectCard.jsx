@@ -9,8 +9,6 @@ import { downloadFiles } from "../../../../api/database";
 
 // Styled component
 const Card = styled.li`
-  // height: 250px;
-
   @media (min-width: 800px) {
     height: 300px;
   }

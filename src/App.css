@@ -9,7 +9,8 @@
     --font-italic: 'Gyahegi', cursive;
 
     /* Colors */
-    /* --primary: #EB665D; */
+    --primary: #A00506;
+    --primary-tone-2: #EB665D;
     --secondary: #ECBDAD;
     --tertiary: #70A19B;
     --grey: #262626;
@@ -18,7 +19,6 @@
 
     --grey-placeholder: #B9B9B9;
     --bg-cream: #EAE6DD;
-    --primary: #A00506;
 }
 
 * {

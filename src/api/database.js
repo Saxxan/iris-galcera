@@ -132,6 +132,17 @@ export const updateProjects = async (projectType, updatedProject) => {
   // Get the updated project
   let newUpdatedProject = updatedProject;
 
+  // Check if some fields are undefined
+  if (newUpdatedProject.thumbnailImg === undefined) {
+    newUpdatedProject.thumbnailImg = {
+      fileName: null,
+      url: null,
+    };
+  }
+  if (newUpdatedProject.thumbnailVideo === undefined) {
+    newUpdatedProject.thumbnailVideo = null;
+  }
+
   let updatedPath = `/${updatedProjectType}/${newUpdatedProject.projectName}`;
   newUpdatedProject.path = updatedPath.replace(" ", "-");
 
