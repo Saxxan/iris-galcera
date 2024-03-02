@@ -2,6 +2,10 @@
 
 Este proyecto es un portfolio web para mi amiga Iris Galcerà, atrezzista. El proyecto consiste en una aplicación web React con base de datos en Firebase. Está formado por una Home, páginas de proyectos y un dashboard interno para manejar dichos proyectos.
 
+![Imagen de la home](home-iris.png)
+
+![Imagen del dashboard](dashboard-iris.png)
+
 ## Inicialización del proyecto
 
 1. Descarga el proyecto
