@@ -1,3 +1,13 @@
+# Portfolio de Iris Galcerà
+
+Este proyecto es un portfolio web para mi amiga Iris Galcerà, atrezzista. El proyecto consiste en una aplicación web React con base de datos en Firebase. Está formado por una Home, páginas de proyectos y un dashboard interno para manejar dichos proyectos.
+
+## Inicialización del proyecto
+
+1. Descarga el proyecto
+2. Instala las dependencias `npm install`
+3. Inicia el proyecto `npm run start`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
