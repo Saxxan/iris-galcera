@@ -1,14 +1,18 @@
+// Dependencies
 import React from "react";
-import Navigation from "../../commons/Navigation/Navigation";
-import { ProjectsPageDeskopt, ProjectsPanel } from "../../commons/theme/Theme";
 
-export default function Commercials() {
+// Components
+import Navigation from "../../commons/Navigation/Navigation";
+import ProjectsPanel from "../../commons/ProjectsPanel/ProjectsPanel";
+import { ProjectPage } from "../../commons/theme/Theme";
+
+function Commercials() {
   return (
-    <ProjectsPageDeskopt>
-      <Navigation />
-      <ProjectsPanel>
-        <h1>COMMERCIALS</h1>
-      </ProjectsPanel>
-    </ProjectsPageDeskopt>
+    <ProjectPage>
+      <Navigation title="commercials" />
+      <ProjectsPanel type="commercials" />
+    </ProjectPage>
   );
 }
+
+export default Commercials;

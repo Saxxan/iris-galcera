@@ -6,13 +6,13 @@ import Navigation from "../../commons/Navigation/Navigation";
 import ProjectsPanel from "../../commons/ProjectsPanel/ProjectsPanel";
 import { ProjectPage } from "../../commons/theme/Theme";
 
-function Film() {
+function TV() {
   return (
     <ProjectPage>
-      <Navigation title="film and series" />
-      <ProjectsPanel type="filmseries" />
+      <Navigation title="tv" />
+      <ProjectsPanel type="tv" />
     </ProjectPage>
   );
 }
 
-export default Film;
+export default TV;

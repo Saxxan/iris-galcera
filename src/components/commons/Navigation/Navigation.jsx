@@ -1,39 +1,66 @@
+// Dependencies
 import React, { useState } from "react";
 import styled from "styled-components";
-import NavMenu from "./NavMenu";
-import ModalMenu from "./ModalMenu";
-import { BurguerIconButton } from "./IconButtons";
+import PropTypes from "prop-types";
 
-const Nav = styled.nav`
-  width: 90vw;
-  height: 10vh;
-  margin: 0 auto;
-  padding: 12px 6px;
+// Components
+import NavMenu from "./components/NavMenu";
+import ModalMenu from "./components/ModalMenu";
+import { BurguerIconButton } from "../IconButtons/IconButtons";
+import { ProjectTitleH1 } from "../Typography/Typography";
+
+// Styled component
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  width: 100%;
+  height: 10vh;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 800px) {
+    padding: 12px 48px;
+  }
 `;
 
-export default function Navigation(props) {
+function Navigation(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  /**
+   * Function that handles modal close or open action
+   */
   function toggleModalVisibility() {
     setIsModalOpen(!isModalOpen);
   }
 
   return (
-    <>
-      <Nav>
-        {/* Icono de hamburguesa */}
-        <BurguerIconButton handleClick={toggleModalVisibility} theme={props.theme}/>
-        {/* Menu en deskopt */}
+    <Header>
+      <ProjectTitleH1>{props.title.toUpperCase()}</ProjectTitleH1>
+      <nav>
+        {/* Burger icon */}
+        <BurguerIconButton
+          handleClick={toggleModalVisibility}
+          theme={props.theme}
+        />
+        {/* Deskopt menu */}
         <NavMenu isDeskoptMenu={true} />
-      </Nav>
+      </nav>
+      {/* Modal menu */}
       <ModalMenu
         display={isModalOpen ? "flex" : "none"}
         handleVisibility={toggleModalVisibility}
       />
-    </>
+    </Header>
   );
 }
+
+Navigation.propTypes = {
+  theme: PropTypes.string,
+};
+
+export default Navigation;

@@ -1,7 +1,10 @@
+// Dependencies
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
+// Styled components
 const NavigationMenu = styled.ul`
   display: flex;
   gap: 36px;
@@ -27,70 +30,56 @@ const OptionLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   display: flex;
-  font-size: 35px;
-  font-weight: 00px;
-  color: var(--ice);
+  font-size: 30px;
+  font-weight: 500px;
+  color: inherit;
+
+  &:hover {
+    color: var(--primary-tone-2);
+  }
 
   &.active {
     color: var(--primary);
   }
 
   @media (min-width: 800px) {
-    font-size: clamp(15px, 1vw, 20px);
+    font-size: clamp(15px, 1vw, 17px);
     font-weight: 500;
   }
 `;
 
-const OptionLinkSec = styled(OptionLink)`
-  @media (min-width: 800px) {
-    color: var(--tertiary);
-  }
-`;
-
-export function Menu() {
+function Menu() {
   const location = useLocation();
 
   const options = [
-    { name: "HOME", path: "/" },
-    { name: "COMMERCIALS", path: "/commercials" },
-    { name: "FILM", path: "/film" },
+    { name: "HOME", path: "/", key: "1" },
+    { name: "COMMERCIALS", path: "/commercials", key: "2" },
+    { name: "FILM AND SERIES", path: "/filmseries", key: "3" },
+    { name: "TV", path: "/tv", key: "4" },
   ];
 
   function handleOptionSelected(optionPath) {
     return optionPath === location.pathname ? "active" : "";
   }
 
-  function getTheme() {
-    const theme = location.pathname !== "/" ? "secondary" : "primary";
-    return theme;
-  }
-
   return (
     <>
       {options.map((option) => {
-        const theme = getTheme();
-        const response =
-          theme === "primary" ? (
-            <OptionLink
-              className={handleOptionSelected(option.path)}
-              to={option.path}
-            >
-              {option.name}
-            </OptionLink>
-          ) : (
-            <OptionLinkSec
-              className={handleOptionSelected(option.path)}
-              to={option.path}
-            >
-              {option.name}
-            </OptionLinkSec>
-          );
-        return response;
+        return (
+          <OptionLink
+            key={option.key}
+            className={handleOptionSelected(option.path)}
+            to={option.path}
+          >
+            {option.name}
+          </OptionLink>
+        );
       })}
     </>
   );
 }
-export default function NavMenu(props) {
+
+function NavMenu(props) {
   return props.isDeskoptMenu ? (
     <NavigationMenuDeskopt>
       <Menu />
@@ -101,3 +90,9 @@ export default function NavMenu(props) {
     </NavigationMenuMobile>
   );
 }
+
+NavMenu.propTypes = {
+  isDeskoptMenu: PropTypes.bool,
+};
+
+export default NavMenu;
